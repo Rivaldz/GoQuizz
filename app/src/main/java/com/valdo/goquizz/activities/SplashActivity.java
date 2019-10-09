@@ -1,8 +1,10 @@
-package com.valdo.goquizz;
+package com.valdo.goquizz.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.valdo.goquizz.R;
 
 public class SplashActivity extends AppCompatActivity {
 
