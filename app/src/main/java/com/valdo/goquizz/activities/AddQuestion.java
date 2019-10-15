@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.valdo.goquizz.R;
 
-public class AddQustion extends AppCompatActivity {
+public class AddQuestion extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_qustion);
+        setContentView(R.layout.activity_add_question);
     }
 }

@@ -17,7 +17,7 @@ public class AddQuiz extends AppCompatActivity {
     }
 
     public void addQuizHandler(View view) {
-        Intent intent = new Intent(this, AddQustion.class);
+        Intent intent = new Intent(this, AddQuestion.class);
         startActivity(intent);
     }
 }
