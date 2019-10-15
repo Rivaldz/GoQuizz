@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.valdo.goquizz.R;
@@ -69,7 +70,19 @@ public class EnterCodeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_enter_code, container, false);
+
+        View view =  inflater.inflate(R.layout.fragment_enter_code, container, false);
+        Button enterBuntton = view.findViewById(R.id.button_enter);
+
+        enterBuntton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.buttonPlayQuiz();
+                }
+            }
+        });
+        return view;
     }
 
     @Override
@@ -90,6 +103,6 @@ public class EnterCodeFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void buttonPlayQuiz();
     }
 }

@@ -10,11 +10,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.valdo.goquizz.activities.AddQuiz;
+import com.valdo.goquizz.activities.PlayQuiz;
 import com.valdo.goquizz.fragments.EnterCodeFragment;
 import com.valdo.goquizz.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements
-    BottomNavigationView.OnNavigationItemSelectedListener{
+    BottomNavigationView.OnNavigationItemSelectedListener,
+    EnterCodeFragment.OnFragmentInteractionListener{
 
 
     @Override
@@ -57,5 +59,11 @@ public class MainActivity extends AppCompatActivity implements
                 startActivity(intent);
         }
         return loadFragment(fragment);
+    }
+
+    @Override
+    public void buttonPlayQuiz() {
+        Intent intent = new Intent(this, PlayQuiz.class);
+        startActivity(intent);
     }
 }
