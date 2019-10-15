@@ -11,6 +11,12 @@
             <solid android:color="@color/grayCerah"/>
             <corners android:radius="10dp"/>
         </shape>
+    </item>
+    <item android:state_pressed="true" >
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorAccent"/>
+            <corners android:radius="20dp"/>
+        </shape>
 
     </item>
 </selector>
