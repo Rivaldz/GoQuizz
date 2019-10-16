@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.valdo.goquizz.activities.AddQuiz;
@@ -60,4 +61,8 @@ public class MainActivity extends AppCompatActivity implements
         return loadFragment(fragment);
     }
 
+    public void loginHandler(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
