@@ -1,6 +1,7 @@
 package com.valdo.goquizz.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.valdo.goquizz.R;
+import com.valdo.goquizz.activities.PlayQuiz;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,9 +79,8 @@ public class EnterCodeFragment extends Fragment {
         enterBuntton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.buttonPlayQuiz();
-                }
+                Intent intent = new Intent(getActivity(), PlayQuiz.class);
+                startActivity(intent);
             }
         });
         return view;

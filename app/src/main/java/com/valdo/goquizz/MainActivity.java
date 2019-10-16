@@ -15,18 +15,17 @@ import com.valdo.goquizz.fragments.EnterCodeFragment;
 import com.valdo.goquizz.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements
-    BottomNavigationView.OnNavigationItemSelectedListener,
-    EnterCodeFragment.OnFragmentInteractionListener{
+    BottomNavigationView.OnNavigationItemSelectedListener{
 
 
+    EnterCodeFragment enterCodeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        enterCodeFragment = new EnterCodeFragment();
         loadFragment(new HomeFragment());
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
     }
@@ -61,9 +60,4 @@ public class MainActivity extends AppCompatActivity implements
         return loadFragment(fragment);
     }
 
-    @Override
-    public void buttonPlayQuiz() {
-        Intent intent = new Intent(this, PlayQuiz.class);
-        startActivity(intent);
-    }
 }
