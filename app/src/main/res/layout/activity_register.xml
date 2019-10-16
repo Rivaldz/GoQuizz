@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextRegisterPassword" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_register"
                 android:layout_width="215dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="32dp"
@@ -103,15 +103,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextRegisterUlangiPassword" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Sudah Punya Akun ? Masuk"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
