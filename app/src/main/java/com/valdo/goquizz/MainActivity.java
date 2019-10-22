@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.valdo.goquizz.activities.AddQuiz;
-import com.valdo.goquizz.activities.PlayQuiz;
 import com.valdo.goquizz.fragments.EnterCodeFragment;
 import com.valdo.goquizz.fragments.HomeFragment;
 
@@ -19,14 +17,14 @@ public class MainActivity extends AppCompatActivity implements
     BottomNavigationView.OnNavigationItemSelectedListener{
 
 
-    EnterCodeFragment enterCodeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        enterCodeFragment = new EnterCodeFragment();
+
         loadFragment(new HomeFragment());
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
     }
