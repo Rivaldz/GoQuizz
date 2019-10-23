@@ -37,7 +37,7 @@
 
             <EditText
                 android:id="@+id/editTextRegisterUsername"
-                android:layout_width="wrap_content"
+                android:layout_width="233dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
@@ -49,7 +49,7 @@
 
             <EditText
                 android:id="@+id/editTextRegisterEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="233dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
@@ -61,7 +61,7 @@
 
             <EditText
                 android:id="@+id/editTextRegisterPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="233dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
@@ -73,7 +73,7 @@
 
             <EditText
                 android:id="@+id/editTextRegisterUlangiPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="233dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
@@ -85,8 +85,8 @@
 
             <EditText
                 android:id="@+id/editTextRegisterNama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="233dp"
+                android:layout_height="47dp"
                 android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="Nama Lengkap"
