@@ -9,9 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.valdo.goquizz.R;
+
+import static android.text.TextUtils.isEmpty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +49,25 @@ public class RegisterFragment extends Fragment {
         password = view.findViewById(R.id.editTextRegisterPassword);
         ulangiPassword = view.findViewById(R.id.editTextRegisterUlangiPassword);
 
+        Button registerButton = view.findViewById(R.id.button_register);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!!isEmpty(nama.getText().toString()) && !isEmpty(username.getText().toString()) && !isEmpty(email.getText().toString())
+                    && !isEmpty(password.getText().toString()) && !isEmpty(ulangiPassword.getText().toString())){
+
+                   //input database
+
+                }
+                else {
+                    Snackbar snackBar = Snackbar.make(getActivity().findViewById(android.R.id.content),
+                            "Silahkan isi semua field", Snackbar.LENGTH_LONG);
+                    snackBar.show();
+                }
+            }
+        });
+
 
         return view;
     }
@@ -55,16 +79,16 @@ public class RegisterFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
+//    }
 
     @Override
     public void onDetach() {
