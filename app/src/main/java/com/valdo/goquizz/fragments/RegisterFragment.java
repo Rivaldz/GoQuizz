@@ -4,8 +4,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
 
 import static android.text.TextUtils.isEmpty;
@@ -26,12 +34,17 @@ import static android.text.TextUtils.isEmpty;
  */
 public class RegisterFragment extends Fragment {
 
+    private static final  String TAG = MainActivity.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
     private EditText nama;
     private EditText username;
     private EditText email;
     private EditText password;
     private EditText ulangiPassword;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+
+    private String userId;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -48,6 +61,27 @@ public class RegisterFragment extends Fragment {
         email = view.findViewById(R.id.editTextRegisterEmail);
         password = view.findViewById(R.id.editTextRegisterPassword);
         ulangiPassword = view.findViewById(R.id.editTextRegisterUlangiPassword);
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        //get reference to 'user' node
+        mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        //set app titile
+        mFirebaseInstance.getReference("app_title").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.e(TAG, "App titile update");
+
+                String appTitle = dataSnapshot.getValue(String.class);
+
+                // Update toolbar title not used
+//                getSupportActionBar().setTitle(appTitle);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         Button registerButton = view.findViewById(R.id.button_register);
 
