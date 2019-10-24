@@ -1,22 +1,22 @@
 package com.valdo.goquizz.models;
 
 public class RegisterModel {
-    int key;
+//    int key;
     String nama;
     String username;
     String email;
     String password;
 
-    public int getKey() {
-        return key;
-    }
+//    public int getKey() {
+//        return key;
+//    }
 
-    public void setKey(int key) {
-        this.key = key;
-    }
+//    public void setKey(int key) {
+//        this.key = key;
+//    }
 
-    public RegisterModel() {
-    }
+//    public RegisterModel() {
+//    }
 
     public String getNama() {
         return nama;

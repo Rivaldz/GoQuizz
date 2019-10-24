@@ -1,5 +1,6 @@
 package com.valdo.goquizz.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
+import com.valdo.goquizz.models.RegisterModel;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -79,6 +81,7 @@ public class RegisterFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "Gagal membaca isi title app ", databaseError.toException());
 
             }
         });
@@ -88,15 +91,22 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!!isEmpty(nama.getText().toString()) && !isEmpty(username.getText().toString()) && !isEmpty(email.getText().toString())
+                if (!isEmpty(nama.getText().toString()) && !isEmpty(username.getText().toString()) && !isEmpty(email.getText().toString())
                     && !isEmpty(password.getText().toString()) && !isEmpty(ulangiPassword.getText().toString())){
+
+                    userId = mFirebaseDatabase.push().getKey();
+
+                    RegisterModel registerModel = new RegisterModel(nama.getText().toString()
+                    ,username.getText().toString(),email.getText().toString(),password.getText().toString());
+
+                    mFirebaseDatabase.child(userId).setValue(registerModel);
 
                    //input database
 
                 }
                 else {
-                    Snackbar snackBar = Snackbar.make(getActivity().findViewById(android.R.id.content),
-                            "Silahkan isi semua field", Snackbar.LENGTH_LONG);
+                    @SuppressLint("WrongConstant") Snackbar snackBar = Snackbar.make(getActivity().findViewById(android.R.id.content),
+                            "Silahkan isi semua field", Snackbar.LENGTH_SHORT);
                     snackBar.show();
                 }
             }
@@ -105,6 +115,8 @@ public class RegisterFragment extends Fragment {
 
         return view;
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
