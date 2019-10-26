@@ -20,8 +20,8 @@
 
             <Button
                 android:id="@+id/imageButton"
-                android:layout_width="367dp"
-                android:layout_height="196dp"
+                android:layout_width="300dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:text="Tap here to add image"
@@ -32,14 +32,14 @@
                 android:id="@+id/label_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Title" />
 
             <EditText
                 android:id="@+id/input_title"
-                android:layout_width="368dp"
-                android:layout_height="53dp"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_inputbar"
                 android:hint="Enter Title" />
@@ -48,14 +48,14 @@
                 android:id="@+id/label_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Description" />
 
             <EditText
                 android:id="@+id/input_description"
-                android:layout_width="368dp"
-                android:layout_height="53dp"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_inputbar"
                 android:hint="Enter Description" />
@@ -64,14 +64,14 @@
                 android:id="@+id/label_visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Visible to" />
 
             <Spinner
                 android:id="@+id/spinner_visible"
-                android:layout_width="368dp"
-                android:layout_height="53dp"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_inputbar"
                 android:entries="@array/visible" />
@@ -85,7 +85,7 @@
                 android:onClick="addQuizHandler"
                 android:background="@color/colorAccent"
                 android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="30dp"
                 android:text="Add Quiz" />
 
         </LinearLayout>
