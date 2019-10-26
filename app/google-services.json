@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "771994970508",
+    "firebase_url": "https://goquizz-2b7ad.firebaseio.com",
+    "project_id": "goquizz-2b7ad",
+    "storage_bucket": "goquizz-2b7ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771994970508:android:82afd470ed6f8259eccea9",
+        "android_client_info": {
+          "package_name": "com.valdo.goquizz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771994970508-ijtra1hopplf3sgl2ilf7em5a5doi1v5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.valdo.goquizz",
+            "certificate_hash": "7a145d6a6bedc359a5aac29b80c05cb09da0f131"
+          }
+        },
+        {
+          "client_id": "771994970508-lhafe1h1jmbhq8fdkcq1jjvvf4fptpi6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.valdo.goquizz",
+            "certificate_hash": "071fff9be0577450ac8def480dbc534d05aaedfd"
+          }
+        },
+        {
+          "client_id": "771994970508-phh8rquk0vhh5g565umkh3g3lbskjrh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXcFkArPqj0eVd0HKucm1-1ehtsC6zaAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771994970508-phh8rquk0vhh5g565umkh3g3lbskjrh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
