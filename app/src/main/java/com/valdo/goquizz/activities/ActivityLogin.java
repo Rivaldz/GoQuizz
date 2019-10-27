@@ -1,5 +1,6 @@
 package com.valdo.goquizz.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -13,7 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.valdo.goquizz.MainActivity;
@@ -26,6 +32,8 @@ public class ActivityLogin extends AppCompatActivity {
 
     EditText username,password;
     TextView register;
+    private FirebaseAuth mAuth;
+    private String usernameSt, passSt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,7 @@ public class ActivityLogin extends AppCompatActivity {
         username = findViewById(R.id.editTextLoginUsernameNew);
         password = findViewById(R.id.editTextLoginPasswordNew);
         register = findViewById(R.id.textViewRegister);
+        mAuth = FirebaseAuth.getInstance();
         Button loginBut = findViewById(R.id.buttonLoginNew);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -46,10 +55,13 @@ public class ActivityLogin extends AppCompatActivity {
         loginBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 usernameSt = username.getText().toString();
+                 passSt = password.getText().toString();
                 if (!isEmpty(username.getText().toString()) && !isEmpty(password.getText().toString())
                     && !isEmpty(dataUsername) && !isEmpty(dataPassword)){
-                    Intent i = new Intent(ActivityLogin.this, MainActivity.class);
-                    startActivity(i);
+
+//                    Intent i = new Intent(ActivityLogin.this, MainActivity.class);
+//                    startActivity(i);
 
                 }
                 else {
@@ -58,6 +70,21 @@ public class ActivityLogin extends AppCompatActivity {
                     snackbar1.show();
 
                 }
+                mAuth.signInWithEmailAndPassword(usernameSt, passSt)
+                        .addOnCompleteListener(ActivityLogin.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Intent i = new Intent(ActivityLogin.this, MainActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                                else {
+                                    Toast.makeText(ActivityLogin.this, "Gagal Login cek Username dan Password", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
             }
         });
 
