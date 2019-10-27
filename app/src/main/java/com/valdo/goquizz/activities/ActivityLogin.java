@@ -3,6 +3,7 @@ package com.valdo.goquizz.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,7 @@ public class ActivityLogin extends AppCompatActivity {
 
                 }
                 else {
-                    Snackbar snackbar1 = Snackbar.make(findViewById(R.id.fragment_container), "Isi semua field", Snackbar.LENGTH_LONG);
+                    @SuppressLint("WrongConstant") Snackbar snackbar1 = Snackbar.make(findViewById(R.id.fragment_container), "Isi semua field", Snackbar.LENGTH_LONG);
                     snackbar1.show();
 
                 }
