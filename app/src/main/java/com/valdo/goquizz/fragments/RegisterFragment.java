@@ -17,7 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +33,8 @@ import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.activities.ActivityLogin;
 import com.valdo.goquizz.models.RegisterModel;
+
+import java.util.concurrent.Executor;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -47,6 +55,10 @@ public class RegisterFragment extends Fragment {
     private EditText ulangiPassword;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
+    private FirebaseAuth mFirebaseAuth;
+
+    private String emailSt;
+    private String passSt ;
 
     private String userId;
 
@@ -66,6 +78,9 @@ public class RegisterFragment extends Fragment {
         password = view.findViewById(R.id.editTextRegisterPassword);
         ulangiPassword = view.findViewById(R.id.editTextRegisterUlangiPassword);
         mFirebaseInstance = FirebaseDatabase.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+
 
         //get reference to 'user' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
@@ -93,33 +108,61 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                emailSt = email.getText().toString();
+                passSt = password.getText().toString();
                 if (!isEmpty(nama.getText().toString()) && !isEmpty(username.getText().toString()) && !isEmpty(email.getText().toString())
-                    && !isEmpty(password.getText().toString()) && !isEmpty(ulangiPassword.getText().toString())){
+                    && !isEmpty(password.getText().toString()) && !isEmpty(ulangiPassword.getText().toString())
+                        && (password.getText().toString().equalsIgnoreCase(ulangiPassword.getText().toString()))){
 
-                    userId = mFirebaseDatabase.push().getKey();
+//                    userId = mFirebaseDatabase.push().getKey();
+                    userId = username.getText().toString();
 
-                    RegisterModel registerModel = new RegisterModel(nama.getText().toString()
+                    final RegisterModel registerModel = new RegisterModel(nama.getText().toString()
                     ,username.getText().toString(),email.getText().toString(),password.getText().toString());
 
-                    mFirebaseDatabase.child(userId).setValue(registerModel);
-                    Intent intent = new Intent(getActivity(), ActivityLogin.class);
-                    startActivity(intent);
 
-                    Toast.makeText( getContext(), "Selamat Registrasi Anda Berhasil", Toast.LENGTH_LONG);
+
+
+
+//                    Intent intent = new Intent(getActivity(), ActivityLogin.class);
+//                    startActivity(intent);
+
+//                    Toast.makeText( getContext(), "Selamat Registrasi Anda Berhasil", Toast.LENGTH_LONG);
 
                     //input database
 
                 }
                 else {
                     @SuppressLint("WrongConstant") Snackbar snackBar = Snackbar.make(getActivity().findViewById(android.R.id.content),
-                            "Silahkan isi semua field", Snackbar.LENGTH_SHORT);
+                            "Silahkan isi semua field dan password harus sama", Snackbar.LENGTH_SHORT);
                     snackBar.show();
                 }
+                mFirebaseAuth.createUserWithEmailAndPassword(emailSt, passSt)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+//                                    mFirebaseDatabase.child(userId).setValue(registerModel);
+                                    FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                    Intent i = new Intent(getActivity(), ActivityLogin.class);
+                                    startActivity(i);
+                                }
+                                else {
+                                    Toast.makeText(getContext(), "Gagal register",Toast.LENGTH_LONG);
+                                }
+                            }
+                        });
             }
         });
 
 
         return view;
+
+
+    }
+
+    private void signUp(){
+        password.getText().toString();
     }
 
 
