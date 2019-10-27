@@ -2,6 +2,7 @@ package com.valdo.goquizz.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
+import com.valdo.goquizz.activities.ActivityLogin;
 import com.valdo.goquizz.models.RegisterModel;
 
 import static android.text.TextUtils.isEmpty;
@@ -100,8 +102,12 @@ public class RegisterFragment extends Fragment {
                     ,username.getText().toString(),email.getText().toString(),password.getText().toString());
 
                     mFirebaseDatabase.child(userId).setValue(registerModel);
+                    Intent intent = new Intent(getActivity(), ActivityLogin.class);
+                    startActivity(intent);
 
-                   //input database
+                    Toast.makeText( getContext(), "Selamat Registrasi Anda Berhasil", Toast.LENGTH_LONG);
+
+                    //input database
 
                 }
                 else {
