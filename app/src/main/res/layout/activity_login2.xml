@@ -41,7 +41,7 @@
                 android:layout_width="240dp"
                 android:layout_height="46dp"
                 android:layout_marginTop="32dp"
-                android:hint="Username"
+                android:hint="Email"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
