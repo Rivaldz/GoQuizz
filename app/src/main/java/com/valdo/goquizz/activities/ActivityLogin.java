@@ -31,7 +31,7 @@ import static android.text.TextUtils.isEmpty;
 public class ActivityLogin extends AppCompatActivity {
 
     EditText username,password;
-    TextView register;
+    TextView register, forgotPass;
     private FirebaseAuth mAuth;
     private String usernameSt, passSt;
 
@@ -43,6 +43,7 @@ public class ActivityLogin extends AppCompatActivity {
         password = findViewById(R.id.editTextLoginPasswordNew);
         register = findViewById(R.id.textViewRegister);
         mAuth = FirebaseAuth.getInstance();
+        forgotPass = findViewById(R.id.textViewForgotPass);
         Button loginBut = findViewById(R.id.buttonLoginNew);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -92,6 +93,15 @@ public class ActivityLogin extends AppCompatActivity {
                         .addToBackStack(null)
                         .commit();
 
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ActivityLogin.this, ForgotPassActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 
