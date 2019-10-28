@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -111,7 +112,8 @@ public class RegisterFragment extends Fragment {
                                         mFirebaseAuth.getCurrentUser();
                                         Intent i = new Intent(getActivity(), ActivityLogin.class);
                                         startActivity(i);
-                                        //input database
+                                        getFragmentManager().popBackStack(null, getFragmentManager().POP_BACK_STACK_INCLUSIVE);
+
 
                                     }
                                     else if (!passSt.equals(ulangipasSt)){

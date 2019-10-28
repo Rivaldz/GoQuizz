@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.valdo.goquizz.R;
 
-import static android.text.TextUtils.isEmpty;
-
 public class ForgotPassActivity extends AppCompatActivity {
 
    private EditText emailAuth ;
@@ -29,7 +26,6 @@ public class ForgotPassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         emailAuth = findViewById(R.id.editTextForgotPass);
         kirimBut = findViewById(R.id.buttonForgotPass);
@@ -37,38 +33,24 @@ public class ForgotPassActivity extends AppCompatActivity {
         kirimBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isEmpty(emailAuth.getText().toString())){
-                    Toast.makeText(getBaseContext(), "Emailmu opo cok", Toast.LENGTH_SHORT).show();
-                }else {
-                    FirebaseAuth.getInstance().sendPasswordResetEmail(emailAuth.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Intent i = new Intent(ForgotPassActivity.this, ActivityLogin.class);
-                                        startActivity(i);
-                                        Toast.makeText(ForgotPassActivity.this, "Sukses reset password silahkan cek Email", Toast.LENGTH_LONG).show();
-                                    } else {
-
-                                        Toast.makeText(ForgotPassActivity.this, "Email Tidak Terdaftar ", Toast.LENGTH_LONG).show();
-                                    }
+                FirebaseAuth.getInstance().sendPasswordResetEmail(emailAuth.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Intent i = new Intent(ForgotPassActivity.this, ActivityLogin.class);
+                                    startActivity(i);
+                                    Toast.makeText(ForgotPassActivity.this, "Sukses reset password silahkan cek Email",Toast.LENGTH_LONG).show();
                                 }
-                            });
-                }
+                                else {
+
+                                    Toast.makeText(ForgotPassActivity.this, "Email Tidak Terdaftar ",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
             }
         });
 
 
     }
-        @Override
-        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 }
