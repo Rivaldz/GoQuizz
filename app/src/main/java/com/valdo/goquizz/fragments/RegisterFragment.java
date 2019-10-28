@@ -56,9 +56,9 @@ public class RegisterFragment extends Fragment {
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth mFirebaseAuth;
-
     private String emailSt;
-    private String passSt ;
+    private RegisterModel registerModel;
+    private String passSt,ulangipasSt ;
 
     private String userId;
 
@@ -84,24 +84,6 @@ public class RegisterFragment extends Fragment {
 
         //get reference to 'user' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
-        //set app titile
-        mFirebaseInstance.getReference("app_title").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e(TAG, "App titile update");
-
-                String appTitle = dataSnapshot.getValue(String.class);
-
-                // Update toolbar title not used
-//                getSupportActionBar().setTitle(appTitle);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "Gagal membaca isi title app ", databaseError.toException());
-
-            }
-        });
 
         Button registerButton = view.findViewById(R.id.button_register);
 
@@ -110,48 +92,45 @@ public class RegisterFragment extends Fragment {
             public void onClick(View view) {
                 emailSt = email.getText().toString();
                 passSt = password.getText().toString();
-                if (!isEmpty(nama.getText().toString()) && !isEmpty(username.getText().toString()) && !isEmpty(email.getText().toString())
-                    && !isEmpty(password.getText().toString()) && !isEmpty(ulangiPassword.getText().toString())
-                        && (password.getText().toString().equalsIgnoreCase(ulangiPassword.getText().toString()))){
+                ulangipasSt = ulangiPassword.getText().toString();
 
-//                    userId = mFirebaseDatabase.push().getKey();
-                    userId = username.getText().toString();
+                if (!isEmpty(emailSt) && !isEmpty(passSt)) {
+                    mFirebaseAuth.createUserWithEmailAndPassword(emailSt, passSt)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (!isEmpty(nama.getText().toString()) && !isEmpty(username.getText().toString()) && !isEmpty(email.getText().toString())
+                                            && !isEmpty(password.getText().toString()) && !isEmpty(ulangiPassword.getText().toString())
+                                            && (password.getText().toString().equalsIgnoreCase(ulangiPassword.getText().toString())) && task.isSuccessful()) {
 
-                    final RegisterModel registerModel = new RegisterModel(nama.getText().toString()
-                    ,username.getText().toString(),email.getText().toString(),password.getText().toString());
+                                        userId = username.getText().toString();
+                                        RegisterModel registerModel = new RegisterModel(nama.getText().toString()
+                                                , username.getText().toString(), email.getText().toString(), password.getText().toString());
+                                        mFirebaseDatabase.child(userId).setValue(registerModel);
 
+                                        Toast.makeText(getContext(), "Selamat Registrasi Anda Berhasil", Toast.LENGTH_LONG).show();
+                                        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                        Intent i = new Intent(getActivity(), ActivityLogin.class);
+                                        startActivity(i);
+                                        //input database
 
-
-
-
-//                    Intent intent = new Intent(getActivity(), ActivityLogin.class);
-//                    startActivity(intent);
-
-//                    Toast.makeText( getContext(), "Selamat Registrasi Anda Berhasil", Toast.LENGTH_LONG);
-
-                    //input database
-
+                                    }
+                                    else if (!passSt.equals(ulangipasSt)){
+                                        Toast.makeText(getContext(), "Gagal register Password Tidak Sama", Toast.LENGTH_LONG).show();
+                                    }
+                                    else if (passSt.length() < 6){
+                                        Toast.makeText(getContext(), "Gagal register Password harus lebih dari 6", Toast.LENGTH_LONG).show();
+                                    }
+                                    else {
+                                        Toast.makeText(getContext(), "Masukan Format Email", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                 }
                 else {
-                    @SuppressLint("WrongConstant") Snackbar snackBar = Snackbar.make(getActivity().findViewById(android.R.id.content),
-                            "Silahkan isi semua field dan password harus sama", Snackbar.LENGTH_SHORT);
-                    snackBar.show();
+                    Toast.makeText(getContext(), "Isi Semua Form", Toast.LENGTH_LONG).show();
                 }
-                mFirebaseAuth.createUserWithEmailAndPassword(emailSt, passSt)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-//                                    mFirebaseDatabase.child(userId).setValue(registerModel);
-                                    FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                                    Intent i = new Intent(getActivity(), ActivityLogin.class);
-                                    startActivity(i);
-                                }
-                                else {
-                                    Toast.makeText(getContext(), "Gagal register",Toast.LENGTH_LONG);
-                                }
-                            }
-                        });
+
             }
         });
 
@@ -161,11 +140,6 @@ public class RegisterFragment extends Fragment {
 
     }
 
-    private void signUp(){
-        password.getText().toString();
-    }
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -174,16 +148,6 @@ public class RegisterFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
 
     @Override
     public void onDetach() {

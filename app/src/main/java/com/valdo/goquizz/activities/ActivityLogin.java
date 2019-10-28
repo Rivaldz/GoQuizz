@@ -49,9 +49,6 @@ public class ActivityLogin extends AppCompatActivity {
         final String dataUsername = reference.child("users").child(username.getText().toString()).toString();
         final String dataPassword = reference.child("users").child(password.getText().toString()).toString();
 
-//        String usernameData = reference.orderByChild("username").equalTo(username.getText().toString()).toString();
-//        String passwordData = reference.orderByChild("password").equalTo(password.getText().toString()).toString();
-
         loginBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,8 +57,6 @@ public class ActivityLogin extends AppCompatActivity {
                 if (!isEmpty(username.getText().toString()) && !isEmpty(password.getText().toString())
                     && !isEmpty(dataUsername) && !isEmpty(dataPassword)){
 
-//                    Intent i = new Intent(ActivityLogin.this, MainActivity.class);
-//                    startActivity(i);
 
                 }
                 else {
@@ -99,7 +94,6 @@ public class ActivityLogin extends AppCompatActivity {
 
             }
         });
-
 
     }
 }
