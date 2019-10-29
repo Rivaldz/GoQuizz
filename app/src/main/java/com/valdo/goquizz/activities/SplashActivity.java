@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
 
 //                getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
-                startActivity(new Intent(SplashActivity.this, ActivityLogin.class));
+                startActivity(new Intent(SplashActivity.this, AddQuestion.class));
                 finish();
             }
         },3000);
