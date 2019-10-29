@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activities.AddQuestion">
 
-    <ImageButton
-        android:id="@+id/add_imageQuestion"
-        android:layout_width="333dp"
-        android:layout_height="158dp"
+    <ImageView
+        android:id="@+id/avatarImage"
+        android:layout_width="326dp"
+        android:layout_height="168dp"
         android:layout_marginTop="40dp"
         android:onClick="getImage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,21 +26,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_imageQuestion" />
+        app:layout_constraintTop_toTopOf="@+id/avatarImage" />
 
     <EditText
         android:id="@+id/input_question"
         android:layout_width="311dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/ic_inputbar"
         android:ems="30"
         android:hint="Input question here..."
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_imageQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/avatarImage" />
 
     <EditText
         android:id="@+id/input_answer1"
