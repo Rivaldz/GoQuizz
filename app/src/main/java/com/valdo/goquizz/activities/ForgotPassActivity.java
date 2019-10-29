@@ -28,6 +28,7 @@ public class ForgotPassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         emailAuth = findViewById(R.id.editTextForgotPass);
         kirimBut = findViewById(R.id.buttonForgotPass);

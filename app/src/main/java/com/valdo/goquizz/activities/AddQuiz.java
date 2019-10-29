@@ -33,6 +33,7 @@ public class AddQuiz extends AppCompatActivity {
 
     private Button btnUpload;
     private ImageView btnimg;
+    private DatabaseReference database;
     private EditText title;
     private EditText description;
     private static final String TAG = AddQuiz.class.getCanonicalName();
@@ -53,6 +54,7 @@ public class AddQuiz extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), AddQuestion.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -70,7 +72,6 @@ public class AddQuiz extends AppCompatActivity {
     public void handleChangeAvatar(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, GALLERY_REQUEST_CODE);
-
     }
 
     @Override
