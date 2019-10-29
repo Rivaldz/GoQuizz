@@ -81,7 +81,6 @@ public class RegisterFragment extends Fragment {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-
         //get reference to 'user' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
@@ -109,7 +108,7 @@ public class RegisterFragment extends Fragment {
                                         mFirebaseDatabase.child(userId).setValue(registerModel);
 
                                         Toast.makeText(getContext(), "Selamat Registrasi Anda Berhasil", Toast.LENGTH_LONG).show();
-                                        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                        mFirebaseAuth.getCurrentUser();
                                         Intent i = new Intent(getActivity(), ActivityLogin.class);
                                         startActivity(i);
                                         //input database
