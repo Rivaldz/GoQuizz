@@ -18,14 +18,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Button
+            <ImageView
                 android:id="@+id/imageButton"
                 android:layout_width="300dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
+                android:autofillHints="Tap to add image"
                 android:onClick="handleChangeAvatar"
                 android:layout_marginTop="40dp"
-                android:text="Tap here to add image"
                 android:background="@drawable/button"
                 />
 

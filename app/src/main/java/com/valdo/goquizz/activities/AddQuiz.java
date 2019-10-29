@@ -18,11 +18,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.valdo.goquizz.R;
+import com.valdo.goquizz.models.KuisModel;
 
 import java.io.IOException;
 
@@ -30,6 +32,7 @@ import java.io.IOException;
 public class AddQuiz extends AppCompatActivity {
 
     private Button btnUpload;
+    private ImageView btnimg;
     private EditText title;
     private EditText description;
     private static final String TAG = AddQuiz.class.getCanonicalName();
@@ -42,6 +45,7 @@ public class AddQuiz extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add quiz");
         btnUpload = findViewById(R.id.button_add);
+        btnimg = findViewById(R.id.imageButton);
         title = findViewById(R.id.input_title);
         description = findViewById(R.id.input_description);
         btnUpload.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +84,7 @@ public class AddQuiz extends AppCompatActivity {
                 try {
                     Uri imageUri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-
+                    btnimg.setImageBitmap(bitmap);
                 }catch (IOException e){
                     Toast.makeText(this, "Tidak Bisa load gambar" , Toast.LENGTH_SHORT).show();
                     Log.e(TAG, e.getMessage());

@@ -1,12 +1,22 @@
 package com.valdo.goquizz.models;
 
 public class KuisModel {
-    String title;
-    String description;
+    public String title;
+    public String description;
+    public int image;
 
-    public KuisModel(String title, String description) {
+    public KuisModel(String title, String description, int image) {
         this.title = title;
         this.description = description;
+        this.image = image;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public String getTitle() {

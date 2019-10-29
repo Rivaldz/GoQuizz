@@ -55,32 +55,24 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View view) {
                  usernameSt = username.getText().toString();
                  passSt = password.getText().toString();
-                if (!isEmpty(username.getText().toString()) && !isEmpty(password.getText().toString())
-                    && !isEmpty(dataUsername) && !isEmpty(dataPassword)){
-
-
-                }
-                else {
-                    @SuppressLint("WrongConstant") Snackbar snackbar1 = Snackbar.make(findViewById(R.id.fragment_container), "Isi semua field"
-                            ,Snackbar.LENGTH_LONG);
-                    snackbar1.show();
-
-                }
-                mAuth.signInWithEmailAndPassword(usernameSt, passSt)
-                        .addOnCompleteListener(ActivityLogin.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent i = new Intent(ActivityLogin.this, MainActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-                                else {
-                                    Toast.makeText(ActivityLogin.this, "Gagal Login cek Username dan Password", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+                 if (!isEmpty(usernameSt) && !isEmpty(passSt)) {
+                     mAuth.signInWithEmailAndPassword(usernameSt, passSt)
+                             .addOnCompleteListener(ActivityLogin.this, new OnCompleteListener<AuthResult>() {
+                                 @Override
+                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                     if (task.isSuccessful()) {
+                                         FirebaseUser user = mAuth.getCurrentUser();
+                                         Intent i = new Intent(ActivityLogin.this, MainActivity.class);
+                                         startActivity(i);
+                                         finish();
+                                     } else {
+                                         Toast.makeText(ActivityLogin.this, "Gagal Login cek Username dan Password", Toast.LENGTH_LONG).show();
+                                     }
+                                 }
+                             });
+                 }else {
+                     Toast.makeText(getBaseContext(), "isinen cok", Toast.LENGTH_SHORT).show();
+                 }
             }
         });
 
