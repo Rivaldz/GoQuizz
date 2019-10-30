@@ -13,10 +13,14 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.valdo.goquizz.R;
 
 import java.io.IOException;
@@ -26,6 +30,10 @@ public class AddQuestion extends AppCompatActivity {
 
    private static final String TAG =  AddQuestion.class.getCanonicalName();
    private ImageView avatarImage ;
+   private DatabaseReference mFirebaseDatabase;
+   private FirebaseDatabase mFirebaseInstance;
+   private EditText inputQuestion, answer1, answer2, answer3, answer4;
+   private String  userPin;
    private static final int GALLERY_REQUEST_CODE = 1;
 
     @Override
@@ -33,30 +41,18 @@ public class AddQuestion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
         avatarImage = findViewById(R.id.avatarImage);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setTitle("Add Question");
+        inputQuestion = findViewById(R.id.input_question);
+        answer1 = findViewById(R.id.input_answer1);
+        answer2 = findViewById(R.id.input_answer2);
+        answer3 = findViewById(R.id.input_answer3);
+        answer4 = findViewById(R.id.input_answer4);
 
-//        imageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent inten = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(inten, GALLERY_REQUEST_CODE);
-//
-//            }
-//        });
+
+
+
 
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                this.finish();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
