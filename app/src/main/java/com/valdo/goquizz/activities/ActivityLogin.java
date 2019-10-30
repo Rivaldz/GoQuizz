@@ -71,7 +71,7 @@ public class ActivityLogin extends AppCompatActivity {
                                  }
                              });
                  }else {
-                     Toast.makeText(getBaseContext(), "isinen cok", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getBaseContext(), "Isi semua field", Toast.LENGTH_SHORT).show();
                  }
             }
         });

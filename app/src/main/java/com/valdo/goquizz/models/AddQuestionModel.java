@@ -1,16 +1,17 @@
 package com.valdo.goquizz.models;
 
 public class AddQuestionModel {
-  private String question;
+
+//  private String question;
   private String answer1, answer2, answer3, answer4;
 
-  public String getQuestion() {
-    return question;
-  }
-
-  public void setQuestion(String question) {
-    this.question = question;
-  }
+//  public String getQuestion() {
+//    return question;
+//  }
+//
+//  public void setQuestion(String question) {
+//    this.question = question;
+//  }
 
   public String getAnswer1() {
     return answer1;
@@ -47,7 +48,7 @@ public class AddQuestionModel {
   @Override
   public String toString() {
     return "AddQuestionModel{" +
-            "question='" + question + '\'' +
+//            "question='" + question + '\'' +
             ", answer1='" + answer1 + '\'' +
             ", answer2='" + answer2 + '\'' +
             ", answer3='" + answer3 + '\'' +
@@ -56,7 +57,7 @@ public class AddQuestionModel {
   }
 
   public AddQuestionModel(String question, String answer1, String answer2, String answer3, String answer4) {
-    this.question = question;
+//    this.question = question;
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
