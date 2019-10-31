@@ -8,6 +8,10 @@ public class AddQuestionModel {
 //  public String getQuestion() {
 //    return question;
 //  }
+
+  public AddQuestionModel() {
+  }
+
 //
 //  public void setQuestion(String question) {
 //    this.question = question;
