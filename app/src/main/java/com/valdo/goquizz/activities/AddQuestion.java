@@ -94,6 +94,11 @@ public class AddQuestion extends AppCompatActivity {
                    mFirebaseDatabase.child(String.valueOf(userPin)).child(inputQuestion.getText().toString()).setValue(addQuestionModel);
                    uplodeImage();
                    Toast.makeText(getBaseContext(), "Berhasil menambahkan Soal",Toast.LENGTH_SHORT).show();
+                   inputQuestion.setText(null);
+                   answer1.setText(null);
+                   answer2.setText(null);
+                   answer3.setText(null);
+                   answer4.setText(null);
 
                }
                else {
@@ -169,17 +174,5 @@ public class AddQuestion extends AppCompatActivity {
 
     }
 
-//    public void UplodeImageFileToFirebaseStorage(){
-//        if (filePathUri != null){
-//            StorageReference storageReference = databaseReference.child("All_image" + System.currentTimeMillis() + "." + getFileExtension(filePathUri));
-//            storageReference.putFile(filePathUri)
-//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                        }
-//                    })
-//        }
-//
-//    }
+
 }
