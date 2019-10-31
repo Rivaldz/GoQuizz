@@ -13,15 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <uses-permission android:name="android.permission.INTERNET" />-->
         <activity android:name=".activities.ForgotPassActivity"></activity>
         <activity android:name=".activities.ActivityLogin" />
         <activity android:name=".activities.PlayQuiz" />
-<!--        <activity android:name=".activities.AddQuestion" />-->
+        <activity android:name=".activities.AddQuestion" />
         <activity android:name=".activities.AddQuiz" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".activities.AddQuestion">
-<!--        <activity android:name=".activities.SplashActivity">-->
+<!--        <activity android:name=".activities.AddQuestion">-->
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
