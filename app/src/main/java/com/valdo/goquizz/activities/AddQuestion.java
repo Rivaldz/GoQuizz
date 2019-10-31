@@ -62,13 +62,6 @@ public class AddQuestion extends AppCompatActivity {
         Random rand = new Random();
         userPin = rand.nextInt(9000) + 100;
 
-//        final String  inputQuetionString = inputQuestion.getText().toString();
-//        String  answer1String = answer1.getText().toString();
-//       final String  answer2String = answer2.getText().toString();
-//        final String answer3String = answer3.getText().toString();
-//        final String  answer4String = answer4.getText().toString();
-
-
         addQuestionBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +74,7 @@ public class AddQuestion extends AppCompatActivity {
 
                }
                else {
-                   Toast.makeText(getBaseContext(), "Isikan  pertanyaan dan semua jawaban",Toast.LENGTH_SHORT).show();;
+                   Toast.makeText(getBaseContext(), "Isikan  pertanyaan dan semua jawaban",Toast.LENGTH_LONG).show();;
                }
 
             }
@@ -117,8 +110,6 @@ public class AddQuestion extends AppCompatActivity {
     public void getImage(View view) {
         Intent inten = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(inten, GALLERY_REQUEST_CODE);
-//        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-//        photoPickerIntent.setType("image/*");
-//        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+
     }
 }
