@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.models.AddQuestionModel;
+import com.valdo.goquizz.models.PlayQuizModel;
 
 import org.w3c.dom.Text;
 
@@ -28,6 +29,7 @@ public class PlayQuiz extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
+//    String name =databaseReference.getKey();
 
 
     @Override
@@ -45,18 +47,35 @@ public class PlayQuiz extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
-        databaseReference.child("BankSoal").child("5180").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("BankSoal").child("3678").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 AddQuestionModel showQuestion = dataSnapshot.getValue(AddQuestionModel.class);
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    String value = dataSnapshot.getKey();
+                    quetsionLoad.setText(value);
+                    System.out.println(value);
+
+//                quetsionLoad.setText(value);
                 answerA.setText(showQuestion.getAnswer1());
                 answerB.setText(showQuestion.getAnswer2());
                 anserC.setText(showQuestion.getAnswer3());
                 answerD.setText(showQuestion.getAnswer4());
+
+                }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+//                    String value = snap.getValue(String.class);
+//                    String key = snap.getKey();
+
+//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    String name = ds.getKey();
+//                    quetsionLoad.setText(name);
+//                    System.out.println(name);
+//                }
 
             }
 
