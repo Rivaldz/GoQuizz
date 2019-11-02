@@ -4,17 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.models.AddQuestionModel;
 import com.valdo.goquizz.models.PlayQuizModel;
@@ -29,6 +36,7 @@ public class PlayQuiz extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
+//    StorageReference storageReference;
 //    String name =databaseReference.getKey();
 
 
@@ -43,14 +51,15 @@ public class PlayQuiz extends AppCompatActivity {
         answerB = findViewById(R.id.buttonAnswerB);
         anserC = findViewById(R.id.buttonAnswerC);
         answerD = findViewById(R.id.buttonAnswerD);
+        downloadImage();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
-        databaseReference.child("BankSoal").child("3678").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("BankSoal").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                AddQuestionModel showQuestion = dataSnapshot.getValue(AddQuestionModel.class);
+                PlayQuizModel showQuestion = dataSnapshot.getValue(PlayQuizModel.class);
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     String value = dataSnapshot.getKey();
                     quetsionLoad.setText(value);
@@ -98,5 +107,26 @@ public class PlayQuiz extends AppCompatActivity {
         });
 
 
+    }
+
+    private void downloadImage(){
+        StorageReference storageReference= FirebaseStorage.getInstance().getReference();
+        StorageReference islandRef = storageReference.child("gambar/980a6435-e32f-4f9f-ab52-193ffe7766df.jpg");
+
+        final long ONE_MEGABYTE = 800 * 800;
+        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                // Data for "images/island.jpg" is returns, use this as needed
+                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                imageLoad.setImageBitmap(bmp);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+                Toast.makeText(PlayQuiz.this, "Gagal mengambil soal, Silahkan cek koneksi",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

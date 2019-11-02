@@ -119,7 +119,7 @@ public class AddQuestion extends AppCompatActivity {
        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
        byte[] bytes = stream.toByteArray();
 
-       String namaFile = UUID.randomUUID()+".jpg";
+           String namaFile = inputQuestion.getText().toString()+".jpg";
        String pathImage = "gambar/"+namaFile;
        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -135,6 +135,8 @@ public class AddQuestion extends AppCompatActivity {
                    }
                });
     }
+
+
 
 
     @Override
