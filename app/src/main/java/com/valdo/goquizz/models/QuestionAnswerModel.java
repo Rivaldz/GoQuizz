@@ -1,21 +1,8 @@
 package com.valdo.goquizz.models;
 
-public class PlayQuizModel {
-
+public class QuestionAnswerModel {
     private String questionQuizz;
     private String answer1, answer2, answer3, answer4;
-
-//    public PlayQuizModel(String questionQuizz, String answer1, String answer2, String answer3, String answer4) {
-//        this.questionQuizz = questionQuizz;
-//        this.answer1 = answer1;
-//        this.answer2 = answer2;
-//        this.answer3 = answer3;
-//        this.answer4 = answer4;
-//    }
-
-
-    public PlayQuizModel() {
-    }
 
     public String getQuestionQuizz() {
         return questionQuizz;
@@ -24,7 +11,6 @@ public class PlayQuizModel {
     public void setQuestionQuizz(String questionQuizz) {
         this.questionQuizz = questionQuizz;
     }
-
 
     public String getAnswer1() {
         return answer1;
@@ -58,14 +44,20 @@ public class PlayQuizModel {
         this.answer4 = answer4;
     }
 
-    @Override
-    public String toString() {
-        return "PlayQuizModel{" +
-                "answer1='" + answer1 + '\'' +
-                ", answer2='" + answer2 + '\'' +
-                ", answer3='" + answer3 + '\'' +
-                ", answer4='" + answer4 + '\'' +
-                '}';
+    public QuestionAnswerModel(String questionQuizz, String answer1, String answer2, String answer3, String answer4) {
+        this.questionQuizz = questionQuizz;
+        this.answer1 = answer1;
+        this.answer2 = answer2;
+        this.answer3 = answer3;
+        this.answer4 = answer4;
+
+
+    }
+
+    public QuestionAnswerModel(PlayQuizModel input) {
+    }
+
+    public QuestionAnswerModel(String questionQuizz) {
+        this.questionQuizz = questionQuizz;
     }
 }
-

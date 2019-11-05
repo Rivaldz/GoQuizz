@@ -11,6 +11,7 @@
         android:id="@+id/input_code"
         android:layout_width="296dp"
         android:layout_height="66dp"
+        android:inputType="number"
         android:layout_marginTop="200dp"
         android:background="@drawable/ic_inputbar"
         android:hint="Enter game Code"
