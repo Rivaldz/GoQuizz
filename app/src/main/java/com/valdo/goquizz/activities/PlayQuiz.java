@@ -23,19 +23,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.valdo.goquizz.R;
-import com.valdo.goquizz.models.AddQuestionModel;
+import com.valdo.goquizz.fragments.EnterCodeFragment;
 import com.valdo.goquizz.models.PlayQuizModel;
-
-import org.w3c.dom.Text;
 
 public class PlayQuiz extends AppCompatActivity {
 
-    ImageView imageLoad;
-    TextView quetsionLoad;
-    Button answerA, answerB, anserC, answerD;
+    private ImageView imageLoad;
+    private TextView quetsionLoad;
+    private Button answerA, answerB, anserC, answerD;
 
-    DatabaseReference databaseReference;
-    FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
+    private String childName;
+
+//    private pinInit initPin;
+
 //    StorageReference storageReference;
 //    String name =databaseReference.getKey();
 
@@ -45,25 +47,32 @@ public class PlayQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quiz);
 
+//        initPin = new pinInit();
+
         imageLoad = findViewById(R.id.imageViewPlayQuiz);
         quetsionLoad = findViewById(R.id.textViewPlayQuiz);
         answerA = findViewById(R.id.buttonAnswerA);
         answerB = findViewById(R.id.buttonAnswerB);
         anserC = findViewById(R.id.buttonAnswerC);
         answerD = findViewById(R.id.buttonAnswerD);
-        downloadImage();
+//        downloadImage();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
-        databaseReference.child("BankSoal").addChildEventListener(new ChildEventListener() {
+        String pin = String.valueOf(EnterCodeFragment.myPin);
+        System.out.println("bababababababa dlfjaldfja;ldf jeijflakdjfiwe" + pin);
+
+        databaseReference.child("BankSoal").child(pin).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 PlayQuizModel showQuestion = dataSnapshot.getValue(PlayQuizModel.class);
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     String value = dataSnapshot.getKey();
                     quetsionLoad.setText(value);
-                    System.out.println(value);
+//                    System.out.println(value);
+                    childName = value;
+                    downloadImage(value);
 
 //                quetsionLoad.setText(value);
                 answerA.setText(showQuestion.getAnswer1());
@@ -109,9 +118,9 @@ public class PlayQuiz extends AppCompatActivity {
 
     }
 
-    private void downloadImage(){
+    private void downloadImage(String name){
         StorageReference storageReference= FirebaseStorage.getInstance().getReference();
-        StorageReference islandRef = storageReference.child("gambar/980a6435-e32f-4f9f-ab52-193ffe7766df.jpg");
+        StorageReference islandRef = storageReference.child("gambar/"+name+".jpg");
 
         final long ONE_MEGABYTE = 800 * 800;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

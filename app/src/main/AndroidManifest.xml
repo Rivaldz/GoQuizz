@@ -19,7 +19,7 @@
         <activity android:name=".activities.AddQuestion" />
         <activity android:name=".activities.AddQuiz" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.PlayQuiz">
 <!--        <activity android:name=".activities.SplashActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

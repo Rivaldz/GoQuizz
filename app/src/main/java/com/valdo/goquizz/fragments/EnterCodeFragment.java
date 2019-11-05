@@ -1,8 +1,6 @@
 package com.valdo.goquizz.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.activities.PlayQuiz;
+
+import static android.text.TextUtils.isEmpty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,8 +33,13 @@ public class EnterCodeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
+    public static int myPin = 0;
+
+//    public String pinGame;
+    private EditText enterPin;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,13 +79,20 @@ public class EnterCodeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_enter_code, container, false);
-        Button enterBuntton = view.findViewById(R.id.button_enter);
+        enterPin = view.findViewById(R.id.input_code);
+
+        final Button enterBuntton = view.findViewById(R.id.button_enter);
+
 
         enterBuntton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PlayQuiz.class);
-                startActivity(intent);
+                if (!isEmpty(enterPin.getText().toString()) ) {
+                   int pinGame = Integer.parseInt(enterPin.getText().toString());
+                   myPin = pinGame;
+                    Intent intent = new Intent(getActivity(), PlayQuiz.class);
+                    startActivity(intent);
+                }
             }
         });
         return view;
