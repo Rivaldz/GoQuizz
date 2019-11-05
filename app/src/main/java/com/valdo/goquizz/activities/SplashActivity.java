@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.fragments.RegisterFragment;
 
@@ -29,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
 
 //                getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
-                startActivity(new Intent(SplashActivity.this, ActivityLogin.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }
         },1500);

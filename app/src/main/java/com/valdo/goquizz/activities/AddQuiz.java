@@ -46,7 +46,7 @@ public class AddQuiz extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add quiz");
         btnUpload = findViewById(R.id.button_add);
-        btnimg = findViewById(R.id.imageButton);
+        btnimg = findViewById(R.id.imageicon);
         title = findViewById(R.id.input_title);
         description = findViewById(R.id.input_description);
         btnUpload.setOnClickListener(new View.OnClickListener() {
