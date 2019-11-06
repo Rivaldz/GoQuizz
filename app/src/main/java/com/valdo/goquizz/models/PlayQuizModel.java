@@ -2,7 +2,36 @@ package com.valdo.goquizz.models;
 
 public class PlayQuizModel {
 
-    private String answer1, answer2, answer3, answer4;
+    private String questionQuizz;
+    private String answer1, answer2, answer3, answer4, trueAnswer;
+
+    public PlayQuizModel(String answer1, String answer2, String answer3, String answer4, String trueAnswer) {
+        this.answer1 = answer1;
+        this.answer2 = answer2;
+        this.answer3 = answer3;
+        this.answer4 = answer4;
+        this.trueAnswer = trueAnswer;
+    }
+
+    public String getTrueAnswer() {
+        return trueAnswer;
+    }
+
+    public void setTrueAnswer(String trueAnswer) {
+        this.trueAnswer = trueAnswer;
+    }
+
+    public PlayQuizModel() {
+    }
+
+    public String getQuestionQuizz() {
+        return questionQuizz;
+    }
+
+    public void setQuestionQuizz(String questionQuizz) {
+        this.questionQuizz = questionQuizz;
+    }
+
 
     public String getAnswer1() {
         return answer1;
@@ -43,7 +72,26 @@ public class PlayQuizModel {
                 ", answer2='" + answer2 + '\'' +
                 ", answer3='" + answer3 + '\'' +
                 ", answer4='" + answer4 + '\'' +
+                ", trueAnswer='" + trueAnswer + '\'' +
                 '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "PlayQuizModel{" +
+////                "questionQuizz='" + questionQuizz + '\'' +
+//                ", ='" + answer1 + '\'' +
+//                ", ='" + answer2 + '\'' +
+//                ", ='" + answer3 + '\'' +
+//                ", ='" + answer4 + '\'' +
+//                ", ='" + trueAnswer + '\'' +
+//                '}';
+//    }
+
+//
+//    @Override
+//    public String toString() {
+//        return answer1 + answer2+answer3+answer4+trueAnswer;
+//    }
 }
 

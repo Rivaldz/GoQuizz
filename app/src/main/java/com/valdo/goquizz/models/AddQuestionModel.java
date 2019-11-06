@@ -3,19 +3,28 @@ package com.valdo.goquizz.models;
 public class AddQuestionModel {
 
 //  private String question;
-  private String answer1, answer2, answer3, answer4;
+  private String answer1, answer2, answer3, answer4, trueAnswer ;
 
 //  public String getQuestion() {
 //    return question;
 //  }
 
-  public AddQuestionModel() {
-  }
+//  public AddQuestionModel(String s, String toString, String string, String s1, String toString1) {
+//  }
 
 //
 //  public void setQuestion(String question) {
 //    this.question = question;
 //  }
+
+
+  public String getTrueAnswer() {
+    return trueAnswer;
+  }
+
+  public void setTrueAnswer(String trueAnswer) {
+    this.trueAnswer = trueAnswer;
+  }
 
   public String getAnswer1() {
     return answer1;
@@ -52,19 +61,38 @@ public class AddQuestionModel {
   @Override
   public String toString() {
     return "AddQuestionModel{" +
-//            "question='" + question + '\'' +
-            ", answer1='" + answer1 + '\'' +
+            "answer1='" + answer1 + '\'' +
             ", answer2='" + answer2 + '\'' +
             ", answer3='" + answer3 + '\'' +
             ", answer4='" + answer4 + '\'' +
+            ", trueAnswer='" + trueAnswer + '\'' +
             '}';
   }
 
-  public AddQuestionModel(String question, String answer1, String answer2, String answer3, String answer4) {
+  public AddQuestionModel(String answer1, String answer2, String answer3, String answer4, String trueAnswer) {
 //    this.question = question;
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
+    this.trueAnswer = trueAnswer;
   }
+
+//
+//  @Override
+//  public String toString() {
+//    return "AddQuestionModel{" +
+//            "answer1='" + answer1 + '\'' +
+//            ", answer2='" + answer2 + '\'' +
+//            ", answer3='" + answer3 + '\'' +
+//            ", answer4='" + answer4 + '\'' +
+//            '}';
+//  }
+//
+//  public AddQuestionModel(String answer1, String answer2, String answer3, String answer4) {
+//    this.answer1 = answer1;
+//    this.answer2 = answer2;
+//    this.answer3 = answer3;
+//    this.answer4 = answer4;
+//  }
 }
