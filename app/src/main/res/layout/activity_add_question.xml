@@ -30,8 +30,8 @@
 
     <EditText
         android:id="@+id/input_question"
-        android:layout_width="311dp"
-        android:layout_height="50dp"
+        android:layout_width="330dp"
+        android:layout_height="47dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/ic_inputbar"
         android:ems="30"
@@ -68,7 +68,7 @@
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toEndOf="@+id/input_answer1"
         app:layout_constraintTop_toBottomOf="@+id/input_question" />
 
@@ -97,7 +97,7 @@
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toEndOf="@+id/input_answer3"
         app:layout_constraintTop_toBottomOf="@+id/input_answer2" />
 
@@ -124,5 +124,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/buttonA"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="44dp"
+        android:text="A"
+        app:layout_constraintEnd_toStartOf="@+id/input_answer1"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_question" />
+
+    <Button
+        android:id="@+id/buttonB"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
+        android:text="B"
+        app:layout_constraintEnd_toStartOf="@+id/input_answer3"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonA" />
+
+    <Button
+        android:id="@+id/buttonC"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="44dp"
+        android:text="C"
+        app:layout_constraintEnd_toStartOf="@+id/input_answer2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/input_answer1"
+        app:layout_constraintTop_toBottomOf="@+id/input_question" />
+
+    <Button
+        android:id="@+id/buttonD"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
+        android:text="D"
+        app:layout_constraintStart_toEndOf="@+id/input_answer3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonC" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

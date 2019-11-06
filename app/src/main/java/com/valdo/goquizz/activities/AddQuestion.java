@@ -45,7 +45,7 @@ import static android.text.TextUtils.isEmpty;
 public class AddQuestion extends AppCompatActivity {
 
    private static final String TAG =  AddQuestion.class.getCanonicalName();
-   private Button addQuestionBut;
+   private Button addQuestionBut,buttonA,buttonB,buttonC,buttonD;
    private ImageView avatarImage ;
    private EditText inputQuestion, answer1, answer2, answer3, answer4;
 
@@ -55,6 +55,7 @@ public class AddQuestion extends AppCompatActivity {
 
    private int userPin;
    private static final int Image_Request_Code = 7;
+   private static String trueQuestion = null;
 
    private Bitmap imagae;
    private Uri filePathUri;
@@ -68,6 +69,10 @@ public class AddQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_add_question);
         avatarImage = findViewById(R.id.avatarImage);
         inputQuestion = findViewById(R.id.input_question);
+        buttonA = findViewById(R.id.buttonA);
+        buttonB = findViewById(R.id.buttonB);
+        buttonC = findViewById(R.id.buttonC);
+        buttonD = findViewById(R.id.buttonD);
         answer1 = findViewById(R.id.input_answer1);
         answer2 = findViewById(R.id.input_answer2);
         answer3 = findViewById(R.id.input_answer3);
@@ -89,9 +94,10 @@ public class AddQuestion extends AppCompatActivity {
             public void onClick(View view) {
                if (!isEmpty(inputQuestion.getText().toString()) && !isEmpty(answer1.getText().toString()) && !isEmpty(answer3.getText().toString())
                        && !isEmpty(answer3.getText().toString()) && !isEmpty(answer4.getText().toString())){
-                   AddQuestionModel addQuestionModel = new AddQuestionModel(inputQuestion.getText().toString(), answer1.getText().toString(),answer2.getText().toString(),answer3.getText().toString()
-                   ,answer4.getText().toString());
-                   mFirebaseDatabase.child(String.valueOf(userPin)).child(inputQuestion.getText().toString()).setValue(addQuestionModel);
+//                   AddQuestionModel addQuestionModel = new AddQuestionModel(inputQuestion.getText().toString(), answer1.getText().toString(),answer2.getText().toString(),answer3.getText().toString()
+//                   ,answer4.getText().toString());
+                   AddQuestionModel  newQuest = new AddQuestionModel(answer1.getText().toString(),answer2.getText().toString(),answer3.getText().toString(),answer4.getText().toString(),trueQuestion);
+                   mFirebaseDatabase.child(String.valueOf(userPin)).child(inputQuestion.getText().toString()).setValue(newQuest);
                    uplodeImage();
                    Toast.makeText(getBaseContext(), "Berhasil menambahkan Soal",Toast.LENGTH_SHORT).show();
                    inputQuestion.setText(null);
@@ -107,6 +113,42 @@ public class AddQuestion extends AppCompatActivity {
 
             }
         });
+
+        buttonA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trueQuestion = "A";
+                Toast.makeText(getBaseContext(), "Jawaban A ",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trueQuestion = "B";
+
+                Toast.makeText(getBaseContext(), "Jawaban B ",Toast.LENGTH_SHORT).show();
+            }
+        });
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trueQuestion = "C";
+
+                Toast.makeText(getBaseContext(), "Jawaban C ",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        buttonD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trueQuestion = "D";
+
+                Toast.makeText(getBaseContext(), "Jawaban D ",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 
@@ -125,7 +167,7 @@ public class AddQuestion extends AppCompatActivity {
        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
            @Override
            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-               Toast.makeText(AddQuestion.this, "Berhasil menambahkan",Toast.LENGTH_SHORT).show();
+               Toast.makeText(AddQuestion.this, "Berhasil menambahkan Gambar",Toast.LENGTH_SHORT).show();
            }
        })
                .addOnFailureListener(new OnFailureListener() {
