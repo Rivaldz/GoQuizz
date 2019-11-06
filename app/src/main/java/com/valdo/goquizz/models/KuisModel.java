@@ -5,18 +5,9 @@ public class KuisModel {
     public String description;
     public int image;
 
-    public KuisModel(String title, String description, int image) {
+    public KuisModel(String title, String description) {
         this.title = title;
         this.description = description;
-        this.image = image;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
     }
 
     public String getTitle() {
