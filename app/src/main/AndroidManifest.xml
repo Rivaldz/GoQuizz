@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.valdo.goquizz">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.CAMERA" />-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ForgotPassActivity"></activity>
-        <activity android:name=".activities.ActivityLogin" />
-<!--        <activity android:name=".activities.PlayQuiz" />-->
+        <activity android:name=".activities.ForgotPassActivity" />
+<!--        <activity android:name=".activities.ActivityLogin" />-->
         <activity android:name=".activities.AddQuestion" />
         <activity android:name=".activities.AddQuiz" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".activities.PlayQuiz">
-<!--        <activity android:name=".activities.SplashActivity">-->
+        <activity android:name=".activities.PlayQuiz"/>
+        <activity android:name=".activities.SplashActivity">
+
+            <!-- <activity android:name=".activities.SplashActivity"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
