@@ -57,7 +57,7 @@ public class AddQuiz extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add quiz");
         btnUpload = findViewById(R.id.button_add);
-        btnimg = findViewById(R.id.imageicon);
+        btnimg = findViewById(R.id.image_icon);
         title = findViewById(R.id.input_title);
         reference = FirebaseStorage.getInstance().getReference();
         FirebaseAuth auth = FirebaseAuth.getInstance();

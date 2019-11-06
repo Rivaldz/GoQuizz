@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.valdo.goquizz.R;
+import com.valdo.goquizz.activities.PlayQuiz;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,9 +28,12 @@ public class ReesultFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private PlayQuiz playQuiz;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView scoreUser;
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,7 +72,19 @@ public class ReesultFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reesult, container, false);
+        View view =  inflater.inflate(R.layout.fragment_reesult, container, false);
+
+        scoreUser = view.findViewById(R.id.Score);
+        int result = PlayQuiz.resultQuiz;
+        String rq = Integer.toString(result);
+
+        int per = PlayQuiz.countQues;
+        String userScores = Integer.toString(per);
+
+        scoreUser.setText(rq + "/" + userScores);
+
+        return  view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,16 +94,16 @@ public class ReesultFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
+//    }
 
     @Override
     public void onDetach() {

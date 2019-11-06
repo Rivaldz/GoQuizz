@@ -125,7 +125,7 @@ public class AddQuestion extends AppCompatActivity {
         buttonB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                trueQuestion = "B";
+                trueQuestion = "C";
 
                 Toast.makeText(getBaseContext(), "Jawaban B ",Toast.LENGTH_SHORT).show();
             }
@@ -133,7 +133,7 @@ public class AddQuestion extends AppCompatActivity {
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                trueQuestion = "C";
+                trueQuestion = "B";
 
                 Toast.makeText(getBaseContext(), "Jawaban C ",Toast.LENGTH_SHORT).show();
 
