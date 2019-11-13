@@ -235,7 +235,7 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
 //                onRestart();
 //                indexSoal++;
-//                userAnswer = "A";
+                userAnswer = "A";
                 getIndexSoal();
 //                Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
                 quetsionLoad.setText(userQuest.get(indexSoal));
@@ -368,7 +368,7 @@ public class PlayQuiz extends AppCompatActivity {
         StorageReference storageReference= FirebaseStorage.getInstance().getReference();
         StorageReference islandRef = storageReference.child("gambar/"+name+".jpg");
 
-        final long ONE_MEGABYTE = 800 * 800;
+        final long ONE_MEGABYTE = 700 * 700;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {

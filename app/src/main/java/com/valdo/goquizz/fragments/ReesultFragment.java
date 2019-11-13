@@ -1,6 +1,7 @@
 package com.valdo.goquizz.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.activities.PlayQuiz;
 
@@ -34,6 +37,7 @@ public class ReesultFragment extends Fragment {
     private String mParam2;
 
     private TextView scoreUser;
+    private Button butonContinue;
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,6 +86,18 @@ public class ReesultFragment extends Fragment {
         String userScores = Integer.toString(per);
 
         scoreUser.setText(rq + "/" + userScores);
+
+        butonContinue = view.findViewById(R.id.buttonContinue);
+
+        butonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
 
         return  view;
 

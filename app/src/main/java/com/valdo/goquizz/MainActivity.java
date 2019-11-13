@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.valdo.goquizz.activities.AddQuestion;
 import com.valdo.goquizz.activities.AddQuiz;
 import com.valdo.goquizz.fragments.EnterCodeFragment;
 import com.valdo.goquizz.fragments.HomeFragment;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements
                 fragment = new EnterCodeFragment();
                 break;
             case R.id.action_create:
-                Intent intent = new Intent(this, AddQuiz.class);
+                Intent intent = new Intent(this, AddQuestion.class);
                 startActivity(intent);
         }
         return loadFragment(fragment);

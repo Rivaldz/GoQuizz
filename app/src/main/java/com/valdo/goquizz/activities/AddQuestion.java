@@ -60,7 +60,6 @@ public class AddQuestion extends AppCompatActivity {
 
    private Bitmap imagae;
    private Uri filePathUri;
-//   private String inputQuetionString, answer1String, answer2String, answer3String, answer4String;
    private static final int GALLERY_REQUEST_CODE = 1;
    private int i = 0;
 
@@ -97,8 +96,7 @@ public class AddQuestion extends AppCompatActivity {
             public void onClick(View view) {
                if (!isEmpty(inputQuestion.getText().toString()) && !isEmpty(answer1.getText().toString()) && !isEmpty(answer3.getText().toString())
                        && !isEmpty(answer3.getText().toString()) && !isEmpty(answer4.getText().toString())){
-//                   AddQuestionModel addQuestionModel = new AddQuestionModel(inputQuestion.getText().toString(), answer1.getText().toString(),answer2.getText().toString(),answer3.getText().toString()
-//                   ,answer4.getText().toString());
+
                    AddQuestionModel  newQuest = new AddQuestionModel(answer1.getText().toString(),answer2.getText().toString(),answer3.getText().toString(),answer4.getText().toString(),trueQuestion);
                    mFirebaseDatabase.child(String.valueOf(userPin)).child(inputQuestion.getText().toString()).setValue(newQuest);
                    uplodeImage();
@@ -117,11 +115,20 @@ public class AddQuestion extends AppCompatActivity {
             }
         });
 
+        textViewpin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(AddQuestion.this,ShowPinActivity.class);
+                startActivity(i);
+
+            }
+        });
+
 
 
         buttonA.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 trueQuestion = "A";
                 Toast.makeText(getBaseContext(), "Jawaban A ",Toast.LENGTH_SHORT).show();
             }
@@ -154,7 +161,6 @@ public class AddQuestion extends AppCompatActivity {
         });
 
 
-
     }
 
     private void uplodeImage(){
@@ -163,7 +169,7 @@ public class AddQuestion extends AppCompatActivity {
        Bitmap bitmap = ((BitmapDrawable) avatarImage.getDrawable()).getBitmap();
        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-       bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+       bitmap.compress(Bitmap.CompressFormat.JPEG, 72, stream);
        byte[] bytes = stream.toByteArray();
 
        String namaFile = inputQuestion.getText().toString()+".jpg";
