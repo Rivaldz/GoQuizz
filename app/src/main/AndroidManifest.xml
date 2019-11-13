@@ -14,14 +14,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.ForgotPassActivity" />
         <activity android:name=".activities.ActivityLogin" />
-        <activity android:name=".activities.AddQuestion" />
+<!--        <activity android:name=".activities.AddQuestion" />-->
         <activity android:name=".activities.AddQuiz" />
 <!--        <activity android:name=".MainActivity" />-->
         <activity android:name=".activities.PlayQuiz"/>
 
-        <activity android:name=".MainActivity" >
-<!--        <activity android:name=".activities.SplashActivity">-->
-<!--        <activity android:name=".activities.SplashActivity">-->
+        <activity android:name=".activities.AddQuestion" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

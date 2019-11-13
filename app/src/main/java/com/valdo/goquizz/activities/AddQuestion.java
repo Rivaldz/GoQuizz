@@ -54,7 +54,7 @@ public class AddQuestion extends AppCompatActivity {
    private FirebaseDatabase mFirebaseInstance;
    private StorageReference reference;
 
-   private int userPin;
+   public static int userPin = 0;
    private static final int Image_Request_Code = 7;
    private static String trueQuestion = null;
 
@@ -82,7 +82,6 @@ public class AddQuestion extends AppCompatActivity {
         addQuestionBut = findViewById(R.id.buttonAddQuestion);
         reference = FirebaseStorage.getInstance().getReference();
 
-       textViewpin.setText(userPin);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
@@ -90,6 +89,8 @@ public class AddQuestion extends AppCompatActivity {
 
         Random rand = new Random();
         userPin = rand.nextInt(9000) + 100;
+        String pinUser = String.valueOf(userPin);
+        textViewpin.setText(pinUser);
 
         addQuestionBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +116,8 @@ public class AddQuestion extends AppCompatActivity {
 
             }
         });
+
+
 
         buttonA.setOnClickListener(new View.OnClickListener() {
             @Override
