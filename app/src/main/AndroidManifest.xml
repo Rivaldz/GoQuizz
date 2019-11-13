@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.valdo.goquizz">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<!--    <uses-permission android:name="android.permission.INTERNET" /> &lt;!&ndash; <uses-permission android:name="android.permission.CAMERA" /> &ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
 
     <application
         android:allowBackup="true"
@@ -16,11 +16,12 @@
         <activity android:name=".activities.ActivityLogin" />
         <activity android:name=".activities.AddQuestion" />
         <activity android:name=".activities.AddQuiz" />
-        <activity android:name=".MainActivity" />
+<!--        <activity android:name=".MainActivity" />-->
         <activity android:name=".activities.PlayQuiz"/>
-<!--        <activity android:name=".activities.SplashActivity">-->
 
-             <activity android:name=".activities.SplashActivity">
+        <activity android:name=".MainActivity" >
+<!--        <activity android:name=".activities.SplashActivity">-->
+<!--        <activity android:name=".activities.SplashActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

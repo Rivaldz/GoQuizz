@@ -46,8 +46,8 @@ public class PlayQuiz extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
-    private static String userAnswer = null;
-    private String trueQuestions = null;
+    private  String userAnswer = null;
+    private static String trueQuestions = null;
     private int indexSoal = 0;
     public static  int countQues = 0;
     public static int resultQuiz = 0;
@@ -170,7 +170,7 @@ public class PlayQuiz extends AppCompatActivity {
 //                    i++;
 
 //                childName = userQuest.get(1);
-                downloadImage(quetsionLoad.getText().toString());
+                downloadImage(userQuest.get(indexSoal));
                 System.out.println( "ini adalah hasi list " +
                             " Jawaban 1 " +
                             userAnswer1+
@@ -235,7 +235,7 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
 //                onRestart();
 //                indexSoal++;
-                userAnswer = "A";
+//                userAnswer = "A";
                 getIndexSoal();
 //                Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
                 quetsionLoad.setText(userQuest.get(indexSoal));
@@ -312,6 +312,7 @@ public class PlayQuiz extends AppCompatActivity {
                 resultQuiz++;
 
             }
+//            trueQuestions = trueQuestion.get(indexSoal);
         }
         else {
             Fragment fragment = new ReesultFragment();
@@ -320,7 +321,7 @@ public class PlayQuiz extends AppCompatActivity {
                     .addToBackStack(null)
                     .commit();
 
-            Toast.makeText(this, "Soal terakhir broww", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hasil Kuis Anda", Toast.LENGTH_LONG).show();
 
         }
         System.out.println("ini adalah result Quizz " + resultQuiz + "dan true question" + trueQuestions + " syukurin " + userAnswer);

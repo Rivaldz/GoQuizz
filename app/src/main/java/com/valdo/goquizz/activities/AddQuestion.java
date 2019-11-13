@@ -47,6 +47,7 @@ public class AddQuestion extends AppCompatActivity {
    private static final String TAG =  AddQuestion.class.getCanonicalName();
    private Button addQuestionBut,buttonA,buttonB,buttonC,buttonD;
    private ImageView avatarImage ;
+   private TextView textViewpin;
    private EditText inputQuestion, answer1, answer2, answer3, answer4;
 
    private DatabaseReference mFirebaseDatabase;
@@ -67,6 +68,7 @@ public class AddQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
+        textViewpin = findViewById(R.id.textViewPin);
         avatarImage = findViewById(R.id.avatarImage);
         inputQuestion = findViewById(R.id.input_question);
         buttonA = findViewById(R.id.buttonA);
@@ -80,7 +82,7 @@ public class AddQuestion extends AppCompatActivity {
         addQuestionBut = findViewById(R.id.buttonAddQuestion);
         reference = FirebaseStorage.getInstance().getReference();
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+       textViewpin.setText(userPin);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
