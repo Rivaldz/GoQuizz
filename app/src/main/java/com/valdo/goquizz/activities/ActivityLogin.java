@@ -34,6 +34,7 @@ public class ActivityLogin extends AppCompatActivity {
     TextView register, forgotPass;
     private FirebaseAuth mAuth;
     private String usernameSt, passSt;
+    public static String emailLogin = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class ActivityLogin extends AppCompatActivity {
         forgotPass = findViewById(R.id.textViewForgotPass);
         Button loginBut = findViewById(R.id.buttonLoginNew);
 
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         final String dataUsername = reference.child("users").child(username.getText().toString()).toString();
         final String dataPassword = reference.child("users").child(password.getText().toString()).toString();
@@ -55,6 +57,7 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View view) {
                  usernameSt = username.getText().toString();
                  passSt = password.getText().toString();
+                 emailLogin = usernameSt;
                  if (!isEmpty(usernameSt) && !isEmpty(passSt)) {
                      mAuth.signInWithEmailAndPassword(usernameSt, passSt)
                              .addOnCompleteListener(ActivityLogin.this, new OnCompleteListener<AuthResult>() {

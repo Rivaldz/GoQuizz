@@ -32,6 +32,7 @@ import com.valdo.goquizz.fragments.RegisterFragment;
 import com.valdo.goquizz.models.AddQuestionModel;
 import com.valdo.goquizz.models.PlayQuizModel;
 import com.valdo.goquizz.models.QuestionAnswerModel;
+import com.valdo.goquizz.models.ResultTest;
 
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
@@ -45,31 +46,25 @@ public class PlayQuiz extends AppCompatActivity {
     private TextView quetsionLoad;
     private Button answer1, answer2, answer3, answer4;
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference, databaseFIllFirebase;
     private FirebaseDatabase firebaseDatabase;
     private  String userAnswer = null;
     private static String trueQuestions = null;
     private int indexSoal = 0;
     public static  int countQues = 0;
     public static int resultQuiz = 0;
-//    public String = resultQuizz;
-//    private List<QuestionAnswerModel> questionAnswerModelList;
+
     private ArrayList<String> userQuest = new ArrayList<String>();
     private ArrayList<String> userAnswer1= new ArrayList<String>();
     private ArrayList<String> userAnswer2= new ArrayList<String>();
     private ArrayList<String> userAnswer3= new ArrayList<String>();
     private ArrayList<String> userAnswer4= new ArrayList<String>();
     private ArrayList<String> trueQuestion= new ArrayList<String>();
-    private ArrayList<String> pinSave= new ArrayList<String>();
     private QuestionAnswerModel questionAnswerModel;
 
     private Set<String> set = new HashSet<>(userQuest);
 
 
-//    private pinInit initPin;
-
-//    StorageReference storageReference;
-//    String name =databaseReference.getKey();
 
 
     @Override
@@ -77,7 +72,7 @@ public class PlayQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quiz);
 
-//        initPin = new pinInit();
+
 
         imageLoad = findViewById(R.id.imageViewPlayQuiz);
         quetsionLoad = findViewById(R.id.textViewPlayQuiz);
@@ -91,31 +86,23 @@ public class PlayQuiz extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        databaseFIllFirebase = firebaseDatabase.getReference("ResultTest");
+
         final PlayQuizModel input = new PlayQuizModel();
 
         playQuizList = new ArrayList<>();
 
         String pin = String.valueOf(EnterCodeFragment.myPin);
-
         databaseReference.child("BankSoal").child(pin).addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                playQuizList.add(showQuestion);
-//                countQues = retrive - 2;
 
-//                String values = userQuest.get(1);
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                countQues = (int) dataSnapshot.;
 
                     userQuest.add(dataSnapshot.getKey());
                     userQuest.addAll(set);
                     String value = dataSnapshot.getKey();
-//                    quetsionLoad.setText(userQuest.get(1));
-//                    System.out.println(value);
-//                    childName = userQuest.get(1);
-//                    downloadImage(userQuest.get(1));
-//                    input.setQuestionQuizz(value);
+
                 PlayQuizModel showQuestion = dataSnapshot.getValue(PlayQuizModel.class);
 
                     userAnswer1.add(showQuestion.getAnswer1());
@@ -123,27 +110,13 @@ public class PlayQuiz extends AppCompatActivity {
                     userAnswer3.add(showQuestion.getAnswer3());
                     userAnswer4.add(showQuestion.getAnswer4());
                     trueQuestion.add(showQuestion.getTrueAnswer());
-//                answer1.setText(questionAnswerModel.getAnswer1());
-//                answer2.setText(questionAnswerModel.getAnswer2());
-//                answer3.setText(questionAnswerModel.getAnswer3());
-//                answer4.setText(questionAnswerModel.getAnswer4());
 
-//                quetsionLoad.setText(value);
                 answer1.setText(userAnswer1.get(indexSoal));
                 answer2.setText(userAnswer2.get(indexSoal));
                 answer3.setText(userAnswer3.get(indexSoal));
                 answer4.setText(userAnswer4.get(indexSoal));
 
-//                playQuizList.add(new QuestionAnswerModel(input));
 
-//                }
-
-
-//                for(QuestionAnswerModel questionAnswerModel : playQuizList){
-//                    int  i =0;
-//                    i++;
-
-//                childName = userQuest.get(1);
                 downloadImage(userQuest.get(indexSoal));
                 System.out.println( "ini adalah hasi list " +
                             " Jawaban 1 " +
@@ -166,22 +139,11 @@ public class PlayQuiz extends AppCompatActivity {
                 countQues = size - 1;
 
 
-
-
-//
-//                }
-
-
             }
 
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                AddQuestionModel jawaban = dataSnapshot.child("Caknun kuyy").getValue(AddQuestionModel.class);
-//                answer1.setText("NIM : "+jawaban.getAnswer1());
-//                answer2.setText("Nama : "+jawaban.getAnswer2());
-//                answer3.setText("Jurusan : "+jawaban.getAnswer3());
-//                answer4.setText(jawaban.getAnswer4());
 
             }
 
@@ -209,20 +171,9 @@ public class PlayQuiz extends AppCompatActivity {
         answer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                onRestart();
-//                indexSoal++;
                 userAnswer = "A";
                 getIndexSoal();
-//                Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
-                quetsionLoad.setText(userQuest.get(indexSoal));
-                downloadImage(quetsionLoad.getText().toString());
-                System.out.println("ini hasil child bro iya pertanyaan " + userAnswer1);
-                answer1.setText(userAnswer1.get(indexSoal));
-                answer2.setText(userAnswer2.get(indexSoal));
-                answer3.setText(userAnswer3.get(indexSoal));
-                answer4.setText(userAnswer4.get(indexSoal));
-//                answer1.setText(userAnswer1.get(1).indexOf(1));
-//                getDataFirebase();
+                setMethod();
 
             }
         });
@@ -232,13 +183,8 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = "B";
                 getIndexSoal();
-//                Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
-                quetsionLoad.setText(userQuest.get(indexSoal));
-                downloadImage(quetsionLoad.getText().toString());
-                answer1.setText(userAnswer1.get(indexSoal));
-                answer2.setText(userAnswer2.get(indexSoal));
-                answer3.setText(userAnswer3.get(indexSoal));
-                answer4.setText(userAnswer4.get(indexSoal));
+               setMethod();
+
 
             }
         });
@@ -246,16 +192,10 @@ public class PlayQuiz extends AppCompatActivity {
         answer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                indexSoal++;
                 userAnswer = "C";
                getIndexSoal();
-//                Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
-                quetsionLoad.setText(userQuest.get(indexSoal));
-                downloadImage(quetsionLoad.getText().toString());
-                answer1.setText(userAnswer1.get(indexSoal));
-                answer2.setText(userAnswer2.get(indexSoal));
-                answer3.setText(userAnswer3.get(indexSoal));
-                answer4.setText(userAnswer4.get(indexSoal));
+                setMethod();
+
             }
         });
 
@@ -264,19 +204,20 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = "D";
                 getIndexSoal();
-//                Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
-                quetsionLoad.setText(userQuest.get(indexSoal));
-                downloadImage(quetsionLoad.getText().toString());
-                answer1.setText(userAnswer1.get(indexSoal));
-                answer2.setText(userAnswer2.get(indexSoal));
-                answer3.setText(userAnswer3.get(indexSoal));
-                answer4.setText(userAnswer4.get(indexSoal));
+                setMethod();
+
             }
         });
 
+    }
 
-
-
+    private  void setMethod(){
+        quetsionLoad.setText(userQuest.get(indexSoal));
+        downloadImage(quetsionLoad.getText().toString());
+        answer1.setText(userAnswer1.get(indexSoal));
+        answer2.setText(userAnswer2.get(indexSoal));
+        answer3.setText(userAnswer3.get(indexSoal));
+        answer4.setText(userAnswer4.get(indexSoal));
     }
     private int getIndexSoal(){
 //        int userAns =
@@ -296,13 +237,11 @@ public class PlayQuiz extends AppCompatActivity {
                     .replace(R.id.fragment_container2, fragment, fragment.getClass().getSimpleName())
                     .addToBackStack(null)
                     .commit();
-
+            fillFirebase();
             Toast.makeText(this, "Hasil Kuis Anda", Toast.LENGTH_LONG).show();
 
         }
         System.out.println("ini adalah result Quizz " + resultQuiz + "dan true question" + trueQuestions + " syukurin " + userAnswer);
-
-
 
 
         return indexSoal;
@@ -313,32 +252,17 @@ public class PlayQuiz extends AppCompatActivity {
         super.onRestart();
     }
 
-
-    private void getDataFirebase(){
-        DatabaseReference zonesRef = FirebaseDatabase.getInstance().getReference("BankSoal");
-        DatabaseReference zone1Ref = zonesRef.child("7420");
-        DatabaseReference zone1NameRef = zone1Ref.child("Caknun kuyy");
-        zone1NameRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                dataSnapshot.getValue(PlayQuizModel.class);
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    AddQuestionModel jawaban = dataSnapshot.getValue(AddQuestionModel.class);
-//                    answer1.setText("NIM : " + jawaban.getAnswer1());
-//                    answer2.setText("Nama : " + jawaban.getAnswer2());
-//                    answer3.setText("Jurusan : " + jawaban.getAnswer3());
-//                    answer4.setText(jawaban.getAnswer4());
-//                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+    private void fillFirebase(){
+        String emailUser = ActivityLogin.emailLogin;
+        System.out.println("ini email user  " + ActivityLogin.emailLogin + " spasi " + emailUser);
+        String[] part = emailUser.split("\\.");
+        String part1 = part[0];
+        System.out.println("hasil split " + part1);
+        String scoreUser = String.valueOf(resultQuiz);
+        ResultTest resultTest = new ResultTest(part1,scoreUser);
+        databaseFIllFirebase.child(part1).setValue(resultTest);
     }
+
 
     private void downloadImage(String name){
         StorageReference storageReference= FirebaseStorage.getInstance().getReference();

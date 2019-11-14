@@ -93,7 +93,6 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
 
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
-
         mFirebaseDatabase = mFirebaseInstance.getReference("BankSoal");
 
         Random rand = new Random();

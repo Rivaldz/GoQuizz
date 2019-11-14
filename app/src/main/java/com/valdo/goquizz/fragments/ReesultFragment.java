@@ -97,8 +97,6 @@ public class ReesultFragment extends Fragment {
             }
         });
 
-
-
         return  view;
 
     }
