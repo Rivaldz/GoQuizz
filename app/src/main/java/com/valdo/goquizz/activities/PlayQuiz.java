@@ -33,6 +33,7 @@ import com.valdo.goquizz.models.AddQuestionModel;
 import com.valdo.goquizz.models.PlayQuizModel;
 import com.valdo.goquizz.models.QuestionAnswerModel;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -59,6 +60,7 @@ public class PlayQuiz extends AppCompatActivity {
     private ArrayList<String> userAnswer3= new ArrayList<String>();
     private ArrayList<String> userAnswer4= new ArrayList<String>();
     private ArrayList<String> trueQuestion= new ArrayList<String>();
+    private ArrayList<String> pinSave= new ArrayList<String>();
     private QuestionAnswerModel questionAnswerModel;
 
     private Set<String> set = new HashSet<>(userQuest);
@@ -85,8 +87,7 @@ public class PlayQuiz extends AppCompatActivity {
         answer4 = findViewById(R.id.buttonAnswerD);
         final List<QuestionAnswerModel> playQuizList;
 
-//        questionAnswerModelList
-//        downloadImage();
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -95,40 +96,13 @@ public class PlayQuiz extends AppCompatActivity {
         playQuizList = new ArrayList<>();
 
         String pin = String.valueOf(EnterCodeFragment.myPin);
-//        System.out.println("bababababababa dlfjaldfja;ldf jeijflakdjfiwe" + pin);
-        databaseReference.child("BankSoal").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                countQues = (int) dataSnapshot.getChildrenCount();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
 
         databaseReference.child("BankSoal").child(pin).addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 //                playQuizList.add(showQuestion);
+//                countQues = retrive - 2;
 
 //                String values = userQuest.get(1);
 //                for (DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -188,6 +162,8 @@ public class PlayQuiz extends AppCompatActivity {
                 System.out.println("percobaan menyimpan data " + userQuest);
                 System.out.println("percobaan menyimpan data " + userQuest.get(indexSoal));
                 quetsionLoad.setText(userQuest.get(0));
+                int size = userQuest.size();
+                countQues = size - 1;
 
 
 
@@ -304,7 +280,7 @@ public class PlayQuiz extends AppCompatActivity {
     }
     private int getIndexSoal(){
 //        int userAns =
-        if (indexSoal < countQues - 1){
+        if (indexSoal < countQues){
            indexSoal++;
             Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
             System.out.println("ini coount quest " + countQues);

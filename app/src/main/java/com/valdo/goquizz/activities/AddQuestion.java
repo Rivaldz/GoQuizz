@@ -5,9 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,10 +44,10 @@ import java.util.UUID;
 
 import static android.text.TextUtils.isEmpty;
 
-public class AddQuestion extends AppCompatActivity {
+public class AddQuestion extends AppCompatActivity implements  View.OnClickListener{
 
    private static final String TAG =  AddQuestion.class.getCanonicalName();
-   private Button addQuestionBut,buttonA,buttonB,buttonC,buttonD;
+   private Button addQuestionBut,buttonA,buttonB,buttonC,buttonD, finishButton;
    private ImageView avatarImage ;
    private TextView textViewpin;
    private EditText inputQuestion, answer1, answer2, answer3, answer4;
@@ -61,7 +63,7 @@ public class AddQuestion extends AppCompatActivity {
    private Bitmap imagae;
    private Uri filePathUri;
    private static final int GALLERY_REQUEST_CODE = 1;
-   private int i = 0;
+   private int countQuest = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +76,20 @@ public class AddQuestion extends AppCompatActivity {
         buttonB = findViewById(R.id.buttonB);
         buttonC = findViewById(R.id.buttonC);
         buttonD = findViewById(R.id.buttonD);
+        buttonA.setOnClickListener(this);
+        buttonB.setOnClickListener(this);
+        buttonC.setOnClickListener(this);
+        buttonD.setOnClickListener(this);
         answer1 = findViewById(R.id.input_answer1);
         answer2 = findViewById(R.id.input_answer2);
         answer3 = findViewById(R.id.input_answer3);
         answer4 = findViewById(R.id.input_answer4);
+        finishButton = findViewById(R.id.buttonSelesai);
         addQuestionBut = findViewById(R.id.buttonAddQuestion);
         reference = FirebaseStorage.getInstance().getReference();
+
+        String count = String.valueOf(countQuest);
+        textViewpin.setText("Soal ke " + count);
 
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
@@ -87,9 +97,7 @@ public class AddQuestion extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("BankSoal");
 
         Random rand = new Random();
-        userPin = rand.nextInt(9000) + 100;
-        String pinUser = String.valueOf(userPin);
-        textViewpin.setText(pinUser);
+        userPin = rand.nextInt(90000) + 10;
 
         addQuestionBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,11 +109,10 @@ public class AddQuestion extends AppCompatActivity {
                    mFirebaseDatabase.child(String.valueOf(userPin)).child(inputQuestion.getText().toString()).setValue(newQuest);
                    uplodeImage();
                    Toast.makeText(getBaseContext(), "Berhasil menambahkan Soal",Toast.LENGTH_SHORT).show();
-                   inputQuestion.setText(null);
-                   answer1.setText(null);
-                   answer2.setText(null);
-                   answer3.setText(null);
-                   answer4.setText(null);
+                   countQuest++;
+                   String count = String.valueOf(countQuest);
+                   textViewpin.setText("Soal ke " + count);
+                   setNull();
 
                }
                else {
@@ -115,52 +122,61 @@ public class AddQuestion extends AppCompatActivity {
             }
         });
 
-        textViewpin.setOnClickListener(new View.OnClickListener() {
+        finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(AddQuestion.this,ShowPinActivity.class);
-                startActivity(i);
-
+                if (countQuest == 1){
+                    Toast.makeText(getBaseContext(), "Silahkan isi pertanyaaa terlebih dulu",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent i = new Intent(AddQuestion.this, ShowPinActivity.class);
+                    startActivity(i);
+                }
             }
         });
 
 
 
-        buttonA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
+    }
+
+    private void setNull(){
+        avatarImage.setImageBitmap(null);
+        inputQuestion.setText(null);
+        answer1.setText(null);
+        answer2.setText(null);
+        answer3.setText(null);
+        answer4.setText(null);
+        buttonA.setBackgroundColor(Color.WHITE);
+        buttonB.setBackgroundColor(Color.WHITE);
+        buttonC.setBackgroundColor(Color.WHITE);
+        buttonD.setBackgroundColor(Color.WHITE);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buttonA:
                 trueQuestion = "A";
                 Toast.makeText(getBaseContext(), "Jawaban A ",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        buttonB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trueQuestion = "C";
-
-                Toast.makeText(getBaseContext(), "Jawaban B ",Toast.LENGTH_SHORT).show();
-            }
-        });
-        buttonC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trueQuestion = "B";
-
-                Toast.makeText(getBaseContext(), "Jawaban C ",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        buttonD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trueQuestion = "D";
-
-                Toast.makeText(getBaseContext(), "Jawaban D ",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+                buttonA.setBackgroundColor(Color.RED);
+                break;
+             case R.id.buttonB:
+                 trueQuestion = "B";
+                 Toast.makeText(getBaseContext(), "Jawaban B ",Toast.LENGTH_SHORT).show();
+                 buttonB.setBackgroundColor(Color.RED);
+                break;
+             case R.id.buttonC:
+                 trueQuestion = "C";
+                 Toast.makeText(getBaseContext(), "Jawaban C ",Toast.LENGTH_SHORT).show();
+                 buttonC.setBackgroundColor(Color.RED);
+                 break;
+             case R.id.buttonD:
+                 trueQuestion = "D";
+                 Toast.makeText(getBaseContext(), "Jawaban D ",Toast.LENGTH_SHORT).show();
+                 buttonD.setBackgroundColor(Color.RED);
+                break;
+        }
     }
 
     private void uplodeImage(){
@@ -215,12 +231,12 @@ public class AddQuestion extends AppCompatActivity {
             }
         }
     }
-    public String getFileExtension(Uri uri){
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-
-        return  MimeTypeMap.getFileExtensionFromUrl(contentResolver.getType(uri));
-    }
+//    public String getFileExtension(Uri uri){
+//        ContentResolver contentResolver = getContentResolver();
+//        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+//
+//        return  MimeTypeMap.getFileExtensionFromUrl(contentResolver.getType(uri));
+//    }
 
     public void getImage(View view) {
         Intent inten = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
