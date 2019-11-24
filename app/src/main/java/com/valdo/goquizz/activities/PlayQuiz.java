@@ -53,6 +53,7 @@ public class PlayQuiz extends AppCompatActivity {
     private int indexSoal = 0;
     public static  int countQues = 0;
     public static int resultQuiz = 0;
+    private String pinQuiz ;
 
     private ArrayList<String> userQuest = new ArrayList<String>();
     private ArrayList<String> userAnswer1= new ArrayList<String>();
@@ -93,6 +94,7 @@ public class PlayQuiz extends AppCompatActivity {
         playQuizList = new ArrayList<>();
 
         String pin = String.valueOf(EnterCodeFragment.myPin);
+        pinQuiz = pin;
         databaseReference.child("BankSoal").child(pin).addChildEventListener(new ChildEventListener() {
 
             @Override
@@ -115,7 +117,7 @@ public class PlayQuiz extends AppCompatActivity {
                 answer2.setText(userAnswer2.get(indexSoal));
                 answer3.setText(userAnswer3.get(indexSoal));
                 answer4.setText(userAnswer4.get(indexSoal));
-
+                trueQuestions = trueQuestion.get(indexSoal);
 
                 downloadImage(userQuest.get(indexSoal));
                 System.out.println( "ini adalah hasi list " +
@@ -130,7 +132,6 @@ public class PlayQuiz extends AppCompatActivity {
                         "ini jawaban benar" +
                             trueQuestion
                         );
-                trueQuestions = trueQuestion.get(indexSoal);
 
                 System.out.println("percobaan menyimpan data " + userQuest);
                 System.out.println("percobaan menyimpan data " + userQuest.get(indexSoal));
@@ -173,6 +174,7 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = "A";
                 getIndexSoal();
+                userScore();
                 setMethod();
 
             }
@@ -183,7 +185,8 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = "B";
                 getIndexSoal();
-               setMethod();
+                userScore();
+                setMethod();
 
 
             }
@@ -194,7 +197,8 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = "C";
                getIndexSoal();
-                setMethod();
+               userScore();
+               setMethod();
 
             }
         });
@@ -204,6 +208,7 @@ public class PlayQuiz extends AppCompatActivity {
             public void onClick(View view) {
                 userAnswer = "D";
                 getIndexSoal();
+                userScore();
                 setMethod();
 
             }
@@ -225,10 +230,7 @@ public class PlayQuiz extends AppCompatActivity {
            indexSoal++;
             Toast.makeText(getBaseContext(), "Soal Selanjutnya",Toast.LENGTH_SHORT).show();
             System.out.println("ini coount quest " + countQues);
-            if (userAnswer.equalsIgnoreCase(trueQuestions)){
-                resultQuiz++;
 
-            }
 //            trueQuestions = trueQuestion.get(indexSoal);
         }
         else {
@@ -247,6 +249,13 @@ public class PlayQuiz extends AppCompatActivity {
         return indexSoal;
     }
 
+    private int userScore(){
+        if (userAnswer.equalsIgnoreCase(trueQuestions)){
+            resultQuiz++;
+        }
+        return  resultQuiz;
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -256,11 +265,11 @@ public class PlayQuiz extends AppCompatActivity {
         String emailUser = ActivityLogin.emailLogin;
         System.out.println("ini email user  " + ActivityLogin.emailLogin + " spasi " + emailUser);
         String[] part = emailUser.split("\\.");
-        String part1 = part[0];
-        System.out.println("hasil split " + part1);
+        String emailSplit = part[0];
+        System.out.println("hasil split " + emailSplit);
         String scoreUser = String.valueOf(resultQuiz);
-        ResultTest resultTest = new ResultTest(part1,scoreUser);
-        databaseFIllFirebase.child(part1).setValue(resultTest);
+        ResultTest resultTest = new ResultTest(scoreUser);
+        databaseFIllFirebase.child(pinQuiz).child(emailSplit).setValue(resultTest);
     }
 
 

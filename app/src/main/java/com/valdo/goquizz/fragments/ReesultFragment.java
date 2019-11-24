@@ -37,7 +37,7 @@ public class ReesultFragment extends Fragment {
     private String mParam2;
 
     private TextView scoreUser;
-    private Button butonContinue;
+    private Button butonContinue, buttonRank;
 
     private OnFragmentInteractionListener mListener;
 
@@ -79,10 +79,12 @@ public class ReesultFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_reesult, container, false);
 
         scoreUser = view.findViewById(R.id.Score);
+        buttonRank = view.findViewById(R.id.buttonLihatPeringkat);
+
         int result = PlayQuiz.resultQuiz;
         String rq = Integer.toString(result);
 
-        int per = PlayQuiz.countQues;
+        int per = PlayQuiz.countQues + 1;
         String userScores = Integer.toString(per);
 
         scoreUser.setText(rq + "/" + userScores);
@@ -96,6 +98,15 @@ public class ReesultFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+        buttonRank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
 
         return  view;
 

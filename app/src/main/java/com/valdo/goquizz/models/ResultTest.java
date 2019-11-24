@@ -1,5 +1,7 @@
 package com.valdo.goquizz.models;
 
+import java.util.List;
+
 public class ResultTest {
 
     String emailUser,scoreuser;
@@ -7,8 +9,15 @@ public class ResultTest {
     public ResultTest() {
     }
 
-    public ResultTest(String emailUser, String scoreuser) {
+    public ResultTest(List<ResultTest> rankModelList) {
+    }
+
+    public ResultTest( String emailUser,String scoreuser) {
         this.emailUser = emailUser;
+        this.scoreuser = scoreuser;
+    }
+
+    public ResultTest(String scoreuser) {
         this.scoreuser = scoreuser;
     }
 
@@ -31,8 +40,8 @@ public class ResultTest {
     @Override
     public String toString() {
         return "ResultTest{" +
-                "emailUser='" + emailUser + '\'' +
-                ", scoreuser='" + scoreuser + '\'' +
+                "emailUser" + emailUser + '\'' +
+                "scoreuser='" + scoreuser + '\'' +
                 '}';
     }
 }
