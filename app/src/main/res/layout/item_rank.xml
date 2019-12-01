@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="70dp">
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/listRank"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="saya rank 1"
-        android:textSize="20sp"
-        />
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/listRank"
+            android:layout_width="183dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="saya rank 1"
+            android:textColor="@color/White"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/emailListRank"
+            android:textStyle="bold"
+            android:layout_width="221dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textColor="@color/White"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/listRank"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

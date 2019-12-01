@@ -10,14 +10,14 @@ public class RankModel {
 //        this.emailUser = emailUser;
         this.scoreuser = scoreuser;
     }
-//
-//    public String getEmailUser() {
-//        return emailUser;
-//    }
 
-//    public void setEmailUser(String emailUser) {
-//        this.emailUser = emailUser;
-//    }
+    public String getEmailUser() {
+        return emailUser;
+    }
+
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
 
     public String getScoreuser() {
         return scoreuser;

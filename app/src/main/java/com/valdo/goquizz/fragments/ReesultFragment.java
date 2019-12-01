@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.valdo.goquizz.MainActivity;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.activities.PlayQuiz;
+import com.valdo.goquizz.activities.RankActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -102,6 +103,8 @@ public class ReesultFragment extends Fragment {
         buttonRank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(getActivity(), RankActivity.class);
+                startActivity(i);
 
             }
         });

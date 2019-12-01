@@ -63,7 +63,9 @@ public class PlayQuiz extends AppCompatActivity {
     private ArrayList<String> trueQuestion= new ArrayList<String>();
     private QuestionAnswerModel questionAnswerModel;
 
+
     private Set<String> set = new HashSet<>(userQuest);
+
 
 
 
@@ -72,7 +74,6 @@ public class PlayQuiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quiz);
-
 
 
         imageLoad = findViewById(R.id.imageViewPlayQuiz);
@@ -223,6 +224,8 @@ public class PlayQuiz extends AppCompatActivity {
         answer2.setText(userAnswer2.get(indexSoal));
         answer3.setText(userAnswer3.get(indexSoal));
         answer4.setText(userAnswer4.get(indexSoal));
+        trueQuestions = trueQuestion.get(indexSoal);
+        System.out.println("Ini Adalah Index Soal brooww" + indexSoal);
     }
     private int getIndexSoal(){
 //        int userAns =
@@ -267,7 +270,7 @@ public class PlayQuiz extends AppCompatActivity {
         String[] part = emailUser.split("\\.");
         String emailSplit = part[0];
         System.out.println("hasil split " + emailSplit);
-        String scoreUser = String.valueOf(resultQuiz);
+        String scoreUser = String.valueOf(resultQuiz + 1);
         ResultTest resultTest = new ResultTest(scoreUser);
         databaseFIllFirebase.child(pinQuiz).child(emailSplit).setValue(resultTest);
     }

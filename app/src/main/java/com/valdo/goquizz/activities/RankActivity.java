@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.valdo.goquizz.Adapter.RankAdapter;
 import com.valdo.goquizz.R;
+import com.valdo.goquizz.fragments.EnterCodeFragment;
 import com.valdo.goquizz.models.RankModel;
 import com.valdo.goquizz.models.ResultTest;
 
@@ -36,16 +37,18 @@ public class RankActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
+        String pinRank = String.valueOf(EnterCodeFragment.myPin);
 
         recyclerViewRank = findViewById(R.id.listRankrecycler);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("ResultTest").child("38608");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("ResultTest").child(pinRank);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 emailUser.add(dataSnapshot.getKey());
                 RankModel showFirebase = dataSnapshot.getValue(RankModel.class);
                 rankModelList.add(showFirebase);
-                RankAdapter rankAdapter= new RankAdapter(rankModelList);
+                RankAdapter rankAdapter = new RankAdapter(rankModelList,emailUser);
+//                RankAdapter rankAdapter= new RankAdapter(rankModelList);
                 //set adapter dan layputmanager
                 recyclerViewRank.setAdapter(rankAdapter);
                 System.out.println("halah ini show firebase " + showFirebase.getScoreuser());

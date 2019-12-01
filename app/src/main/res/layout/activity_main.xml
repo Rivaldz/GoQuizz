@@ -15,6 +15,31 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/bggradient"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonLiharRank"
+                android:layout_width="148dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="36dp"
+                android:text="Lihat Ranking Saya"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonLihatPin"
+                android:layout_width="148dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="40dp"
+                android:text="Lihat Pin Saya"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
