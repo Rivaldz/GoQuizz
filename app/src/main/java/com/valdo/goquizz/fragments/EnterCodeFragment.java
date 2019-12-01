@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.activities.PlayQuiz;
+import com.valdo.goquizz.activities.RankActivity;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -90,7 +91,7 @@ public class EnterCodeFragment extends Fragment {
                 if (!isEmpty(enterPin.getText().toString()) ) {
                    int pinGame = Integer.parseInt(enterPin.getText().toString());
                    myPin = pinGame;
-                    Intent intent = new Intent(getActivity(), PlayQuiz.class);
+                    Intent intent = new Intent(getActivity(), RankActivity.class);
                     startActivity(intent);
                 }
             }
