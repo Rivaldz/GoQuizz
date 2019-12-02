@@ -27,8 +27,8 @@ import com.valdo.goquizz.models.UserActivityModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankActivity extends AppCompatActivity {
-//    private FirebaseRecyclerAdapter adapter;
+public class RankHomeActivity extends AppCompatActivity {
+
     private Button buttonRankHome;
     RecyclerView recyclerViewRank;
     List<RankModel> rankModelList = new ArrayList<>();
@@ -43,10 +43,10 @@ public class RankActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rank);
+        setContentView(R.layout.activity_rank_home);
         buttonRankHome = findViewById(R.id.buttonRankHome);
 
-        pinAll = String.valueOf(EnterCodeFragment.myPin);
+        pinAll = SeeRankAdapter.pinRecycler;
 
         recyclerViewRank = findViewById(R.id.listRankrecycler);
 
@@ -95,24 +95,10 @@ public class RankActivity extends AppCompatActivity {
         buttonRankHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pinFromEnterCode != null) {
-                    fillUserActivity();
-}
-                startActivity(new Intent(RankActivity.this, MainActivity.class));
+                startActivity(new Intent(RankHomeActivity.this, MainActivity.class));
             }
         });
 
     }
-
-    private  void  fillUserActivity(){
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        fillUserActivity = firebaseDatabase.getReference("UserActivity");
-        String emailUser = ActivityLogin.emailLogin;
-        String[] part = emailUser.split("\\.");
-        String emailSplit = part[0];
-        UserActivityModel userActivityModel = new UserActivityModel(pinFromEnterCode);
-        fillUserActivity.child(emailSplit).push().setValue(userActivityModel);
-    }
-
 
 }

@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.valdo.goquizz.R;
 import com.valdo.goquizz.models.AddQuestionModel;
+import com.valdo.goquizz.models.UserActivityModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,8 +53,8 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
    private TextView textViewpin;
    private EditText inputQuestion, answer1, answer2, answer3, answer4;
 
-   private DatabaseReference mFirebaseDatabase;
-   private FirebaseDatabase mFirebaseInstance;
+   private DatabaseReference mFirebaseDatabase,fillUserPin;
+   private FirebaseDatabase mFirebaseInstance, firebaseDatabase;
    private StorageReference reference;
 
    public static int userPin = 0;
@@ -125,9 +126,10 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
             @Override
             public void onClick(View view) {
                 if (countQuest == 1){
-                    Toast.makeText(getBaseContext(), "Silahkan isi pertanyaaa terlebih dulu",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Silahkan tambahkan terlebih dulu dan pastikan soal anda lebih dari 1",Toast.LENGTH_LONG).show();
                 }
                 else {
+                    setFirebasePinUser();
                     Intent i = new Intent(AddQuestion.this, ShowPinActivity.class);
                     startActivity(i);
                 }
@@ -136,6 +138,16 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
 
 
 
+    }
+
+    private void setFirebasePinUser(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        fillUserPin = firebaseDatabase.getReference("PinGameUser");
+        String emailUser = ActivityLogin.emailLogin;
+        String[] part = emailUser.split("\\.");
+        String emailSplit = part[0];
+        UserActivityModel userActivityModel = new UserActivityModel(String.valueOf(userPin));
+        fillUserPin.child(emailSplit).push().setValue(userActivityModel);
     }
 
     private void setNull(){

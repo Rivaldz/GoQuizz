@@ -91,7 +91,7 @@ public class EnterCodeFragment extends Fragment {
                 if (!isEmpty(enterPin.getText().toString()) ) {
                    int pinGame = Integer.parseInt(enterPin.getText().toString());
                    myPin = pinGame;
-                    Intent intent = new Intent(getActivity(), RankActivity.class);
+                    Intent intent = new Intent(getActivity(), PlayQuiz.class);
                     startActivity(intent);
                 }
             }
