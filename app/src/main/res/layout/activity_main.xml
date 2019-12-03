@@ -17,8 +17,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@drawable/bggradient"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/bggradient">
 
             <Button
                 android:id="@+id/buttonLiharRank"
@@ -50,6 +50,8 @@
         android:background="@color/White"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/navigation" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

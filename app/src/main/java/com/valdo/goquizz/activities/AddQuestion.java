@@ -113,6 +113,7 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
                    String count = String.valueOf(countQuest);
                    textViewpin.setText("Soal ke " + count);
                    setNull();
+                   turnOnButton();
 
                }
                else {
@@ -171,21 +172,25 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
                 trueQuestion = "A";
                 Toast.makeText(getBaseContext(), "Jawaban A ",Toast.LENGTH_SHORT).show();
                 buttonA.setBackgroundColor(Color.RED);
+                turnOffButton();
                 break;
              case R.id.buttonB:
                  trueQuestion = "B";
                  Toast.makeText(getBaseContext(), "Jawaban B ",Toast.LENGTH_SHORT).show();
                  buttonB.setBackgroundColor(Color.RED);
+                 turnOffButton();
                 break;
              case R.id.buttonC:
                  trueQuestion = "C";
                  Toast.makeText(getBaseContext(), "Jawaban C ",Toast.LENGTH_SHORT).show();
                  buttonC.setBackgroundColor(Color.RED);
+                 turnOffButton();
                  break;
              case R.id.buttonD:
                  trueQuestion = "D";
                  Toast.makeText(getBaseContext(), "Jawaban D ",Toast.LENGTH_SHORT).show();
                  buttonD.setBackgroundColor(Color.RED);
+                 turnOffButton();
                 break;
         }
     }
@@ -216,6 +221,18 @@ public class AddQuestion extends AppCompatActivity implements  View.OnClickListe
                });
     }
 
+    private void turnOffButton(){
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
+    }
+    private void turnOnButton(){
+        buttonA.setEnabled(true);
+        buttonB.setEnabled(true);
+        buttonC.setEnabled(true);
+        buttonD.setEnabled(true);
+    }
 
 
     @Override

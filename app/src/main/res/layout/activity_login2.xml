@@ -9,6 +9,7 @@
     tools:context=".activities.ActivityLogin">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="371dp"
         android:layout_height="476dp"
         android:background="@color/White"
@@ -25,6 +26,42 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <Button
+                android:id="@+id/buttonLoginNew"
+                android:layout_width="249dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bggradient"
+                android:text="Masuk"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLoginPasswordNew" />
+
+            <EditText
+                android:id="@+id/editTextLoginPasswordNew"
+                android:layout_width="240dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLoginUsernameNew" />
+
+            <EditText
+                android:id="@+id/editTextLoginUsernameNew"
+                android:layout_width="240dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="96dp"
@@ -35,42 +72,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_kecil" />
-
-            <EditText
-                android:id="@+id/editTextLoginUsernameNew"
-                android:layout_width="240dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="32dp"
-                android:hint="Email"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-            <EditText
-                android:id="@+id/editTextLoginPasswordNew"
-                android:layout_width="240dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="24dp"
-                android:hint="Password"
-                android:ems="10"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextLoginUsernameNew" />
-
-            <Button
-                android:id="@+id/buttonLoginNew"
-                android:layout_width="249dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="24dp"
-                android:text="Masuk"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/bggradient"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextLoginPasswordNew" />
 
             <TextView
                 android:id="@+id/textViewForgotPass"
@@ -95,6 +96,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/iklanAdmobLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3057186935471127/1729221708"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
